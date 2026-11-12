@@ -193,6 +193,106 @@
   .hm-info { font-size:11.5px; color:#1F4E78; background:#EAF7F9; border-radius:8px; padding:6px 12px; margin:0 0 14px; display:inline-block; }
   .hm-info a { font-weight:700; cursor:pointer; text-decoration:underline; margin-left:6px; }
 </style>
+<style>
+/* HOJA-VIDA-PDV-V1 */
+body.hv-on .filtros-tit, body.hv-on .filtro-grupo, body.hv-on .btn-reset { display:none !important; }
+.sidebar nav a.hv-nav { background:linear-gradient(90deg,#0F9B8E22,transparent); border-left:3px solid #0F9B8E; font-weight:700; color:#fff; }
+#vista-hojavida { --hvA:#C0392B; --hvM:#E67E22; --hvB:#2E86C1; --hvOk:#2E7D32; --hvG:#7A8699; }
+.hv-tabs { display:flex; gap:6px; flex-wrap:wrap; margin:0 0 14px; }
+.hv-tabs button { border:1px solid var(--borde); background:#fff; color:var(--azul2); padding:9px 16px; border-radius:22px; font-weight:600; cursor:pointer; font-size:13px; }
+.hv-tabs button.on { background:var(--azul); color:#fff; border-color:var(--azul); }
+.hv-fil { display:grid; grid-template-columns:repeat(7,minmax(120px,1fr)); gap:10px; background:#fff; border:1px solid var(--borde); border-radius:12px; padding:12px 14px; margin-bottom:14px; }
+.hv-fil label { display:block; font-size:10.5px; font-weight:700; color:#5b6b80; text-transform:uppercase; letter-spacing:.4px; margin-bottom:4px; }
+.hv-fil select, .hv-fil input { width:100%; padding:7px 8px; border:1px solid #cfd8e3; border-radius:7px; font-size:12.5px; background:#fff; }
+.hv-par { display:flex; flex-wrap:wrap; gap:14px; align-items:center; font-size:12px; color:#4b5a6d; background:#F6F8FB; border:1px dashed #cfd8e3; border-radius:10px; padding:8px 12px; margin-bottom:14px; }
+.hv-par input { width:58px; padding:4px 6px; border:1px solid #cfd8e3; border-radius:6px; text-align:right; }
+.hv-par b { color:var(--azul2); }
+.hv-kpis { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:16px; }
+.hv-kpi { background:#fff; border-radius:12px; padding:14px 16px; border-top:4px solid var(--azul); box-shadow:0 1px 3px rgba(16,40,70,.06); cursor:pointer; transition:transform .1s; }
+.hv-kpi:hover { transform:translateY(-2px); }
+.hv-kpi .n { font-size:26px; font-weight:800; color:var(--azul2); line-height:1.1; }
+.hv-kpi .t { font-size:12px; color:#5b6b80; margin-top:4px; }
+.hv-kpi.r { border-top-color:var(--hvA); } .hv-kpi.o { border-top-color:var(--hvM); } .hv-kpi.g { border-top-color:var(--hvOk); } .hv-kpi.t2 { border-top-color:#0F9B8E; } .hv-kpi.p { border-top-color:#8E44AD; }
+.hv-panel { background:#fff; border-radius:12px; padding:16px 18px; box-shadow:0 1px 3px rgba(16,40,70,.06); margin-bottom:16px; min-width:0; }
+.hv-panel h3 { margin:0 0 10px; font-size:15px; color:var(--azul2); }
+.hv-panel .sub { font-size:12px; color:#7A8699; margin:-6px 0 10px; }
+.hv-tw { overflow:auto; max-height:560px; border:1px solid var(--borde); border-radius:8px; }
+.hv-t { width:100%; border-collapse:collapse; font-size:12px; }
+.hv-t th { position:sticky; top:0; background:var(--azul2); color:#fff; padding:8px 7px; text-align:left; font-weight:600; white-space:nowrap; z-index:1; }
+.hv-t td { padding:7px; border-bottom:1px solid #eef1f6; vertical-align:top; }
+.hv-t tr.clk { cursor:pointer; } .hv-t tr.clk:hover td { background:#F2F7FC; }
+.hv-t td.num, .hv-t th.num { text-align:right; white-space:nowrap; }
+.hv-chip { display:inline-block; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:700; white-space:nowrap; }
+.hv-chip.A { background:#FDECEA; color:var(--hvA); } .hv-chip.M { background:#FDF0E3; color:#B9600F; } .hv-chip.B { background:#E8F2FA; color:var(--hvB); }
+.hv-chip.ok { background:#E8F5E9; color:var(--hvOk); } .hv-chip.gr { background:#EEF1F6; color:#5b6b80; }
+.hv-chip.pa { background:#12233A; color:#fff; } .hv-chip.pb { background:#1F4E78; color:#fff; } .hv-chip.pc { background:#DDE4EE; color:#22303F; }
+.hv-est { font-size:10.5px; font-weight:700; padding:2px 7px; border-radius:6px; white-space:nowrap; }
+.hv-est.c { background:#FDECEA; color:#A93226; } .hv-est.p { background:#FEF5E7; color:#AF601A; } .hv-est.i { background:#EEF1F6; color:#566573; } .hv-est.v { background:#EBF5FB; color:#1F618D; }
+.hv-sel { display:flex; gap:10px; align-items:center; margin-bottom:14px; flex-wrap:wrap; }
+.hv-sel input { flex:1; min-width:280px; padding:10px 12px; font-size:14px; border:2px solid var(--azul); border-radius:9px; }
+.hv-sel button { padding:10px 14px; border-radius:9px; border:1px solid var(--borde); background:#fff; cursor:pointer; font-weight:600; color:var(--azul2); }
+.hv-head { background:linear-gradient(120deg,#12233A,#1F4E78); color:#fff; border-radius:14px; padding:18px 22px; margin-bottom:14px; display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+.hv-head h2 { margin:0; font-size:20px; } .hv-head .m { font-size:12.5px; opacity:.85; margin-top:6px; line-height:1.6; }
+.hv-head .sem { text-align:right; } .hv-head .sem .big { font-size:30px; font-weight:800; }
+.hv-seq { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin-bottom:16px; }
+.hv-step { background:#fff; border-radius:11px; padding:11px 12px; border-left:5px solid #ccc; box-shadow:0 1px 3px rgba(16,40,70,.06); min-height:108px; }
+.hv-step .k { font-size:10.5px; text-transform:uppercase; font-weight:800; color:#7A8699; letter-spacing:.3px; }
+.hv-step .v { font-size:18px; font-weight:800; color:var(--azul2); margin:4px 0 3px; }
+.hv-step .d { font-size:11.5px; color:#4b5a6d; line-height:1.35; }
+.hv-step.r { border-left-color:var(--hvA); } .hv-step.o { border-left-color:var(--hvM); } .hv-step.g { border-left-color:var(--hvOk); } .hv-step.n { border-left-color:#B0BAC7; }
+.hv-g2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; } .hv-g3 { display:grid; grid-template-columns:1.2fr 1fr; gap:16px; }
+.hv-fotos { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; }
+.hv-foto { border:1px solid var(--borde); border-radius:9px; overflow:hidden; background:#F6F8FB; font-size:11px; }
+.hv-foto img { width:100%; height:150px; object-fit:cover; display:block; cursor:zoom-in; background:#e9edf3; }
+.hv-foto div { padding:5px 7px; color:#4b5a6d; line-height:1.3; }
+.hv-grp { font-size:12px; font-weight:800; color:var(--azul2); margin:12px 0 6px; text-transform:uppercase; }
+.hv-vtabs { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px; }
+.hv-vtabs button { border:1px solid var(--borde); background:#fff; border-radius:7px; padding:5px 9px; font-size:11.5px; cursor:pointer; }
+.hv-vtabs button.on { background:#0F9B8E; color:#fff; border-color:#0F9B8E; }
+.hv-nota { font-size:11.5px; color:#7A8699; margin-top:8px; }
+.hv-vacio { padding:22px; text-align:center; color:#7A8699; font-size:13px; }
+.hv-bar { height:7px; background:#EEF1F6; border-radius:4px; overflow:hidden; min-width:60px; } .hv-bar i { display:block; height:100%; background:#0F9B8E; }
+.hv-btn { padding:8px 13px; border-radius:8px; border:none; background:var(--verde); color:#fff; font-weight:600; cursor:pointer; font-size:12.5px; }
+.hv-btn.sec { background:#fff; color:var(--azul2); border:1px solid var(--borde); }
+.hv-flujo { display:flex; gap:0; align-items:stretch; overflow-x:auto; padding-bottom:4px; }
+.hv-flujo .fz { flex:1; min-width:140px; background:#F6F8FB; border:1px solid var(--borde); border-radius:10px; padding:10px; font-size:11.5px; position:relative; margin-right:18px; }
+.hv-flujo .fz:after { content:'➜'; position:absolute; right:-16px; top:40%; color:#0F9B8E; font-weight:800; }
+.hv-flujo .fz:last-child:after { content:''; } .hv-flujo .fz b { display:block; color:var(--azul2); font-size:12px; margin-bottom:3px; }
+#hv-modal { position:fixed; inset:0; background:rgba(10,20,35,.85); display:none; align-items:center; justify-content:center; z-index:9999; }
+#hv-modal img { max-width:92vw; max-height:86vh; border-radius:8px; } #hv-modal .cap { color:#fff; position:absolute; bottom:18px; left:0; right:0; text-align:center; font-size:13px; }
+@media (max-width:1300px){ .hv-seq{grid-template-columns:repeat(4,1fr);} .hv-fil{grid-template-columns:repeat(4,1fr);} .hv-kpis{grid-template-columns:repeat(3,1fr);} }
+@media (max-width:900px){ .hv-g2,.hv-g3{grid-template-columns:1fr;} .hv-seq{grid-template-columns:repeat(2,1fr);} .hv-fil{grid-template-columns:repeat(2,1fr);} .hv-kpis{grid-template-columns:repeat(2,1fr);} }
+
+.hv-tabs button.hv-tguia { background:#FFF7E6; border-color:#F5C26B; color:#8A5A00; }
+.hv-tabs button.hv-tguia.on { background:#F39C12; color:#fff; border-color:#F39C12; }
+.hv-tabs button.hv-ttour { background:#0F9B8E; color:#fff; border-color:#0F9B8E; margin-left:auto; }
+details.hv-ayuda { background:#FFFBF2; border:1px solid #F5D9A0; border-left:5px solid #F39C12; border-radius:10px; padding:0; margin-bottom:14px; font-size:13px; color:#3d4a5c; }
+details.hv-ayuda summary { cursor:pointer; padding:10px 14px; font-weight:700; color:#8A5A00; list-style:none; }
+details.hv-ayuda summary::-webkit-details-marker { display:none; }
+details.hv-ayuda summary:after { content:'▼ ver'; float:right; font-weight:600; font-size:11.5px; color:#B07A16; }
+details.hv-ayuda[open] summary:after { content:'▲ ocultar'; }
+.hv-ay { display:grid; grid-template-columns:1.1fr 1.4fr 1.1fr; gap:16px; padding:0 14px 12px; }
+.hv-ay h4 { margin:0 0 5px; font-size:11.5px; text-transform:uppercase; letter-spacing:.4px; color:#1F4E78; }
+.hv-ay ol, .hv-ay ul { margin:0; padding-left:18px; line-height:1.55; }
+.hv-ay p { margin:0; line-height:1.55; }
+.hv-ley { display:flex; flex-wrap:wrap; gap:6px 12px; padding:8px 14px 12px; border-top:1px dashed #F1D59B; font-size:11.5px; align-items:center; }
+[data-tip] { cursor:help; }
+#hv-tip { position:fixed; z-index:10001; max-width:320px; background:#12233A; color:#fff; font-size:12px; line-height:1.45; padding:9px 11px; border-radius:8px; box-shadow:0 6px 20px rgba(0,0,0,.25); pointer-events:none; display:none; }
+#hv-tour { position:fixed; inset:0; z-index:10000; }
+#hv-tour-luz { position:fixed; border-radius:10px; box-shadow:0 0 0 9999px rgba(10,20,35,.62); outline:3px solid #F39C12; transition:all .25s; pointer-events:none; }
+#hv-tour-card { position:fixed; width:360px; background:#fff; border-radius:12px; padding:16px 18px; box-shadow:0 10px 30px rgba(0,0,0,.3); font-size:13px; color:#3d4a5c; line-height:1.5; }
+#hv-tour-card h4 { margin:0 0 6px; color:#12233A; font-size:15px; } #hv-tour-card .pie { display:flex; justify-content:space-between; align-items:center; margin-top:12px; }
+#hv-tour-card .pie span { font-size:11.5px; color:#7A8699; }
+.hv-gpasos { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.hv-gpaso { background:#F6F8FB; border:1px solid var(--borde); border-radius:12px; padding:14px; }
+.hv-gpaso .num { width:30px; height:30px; border-radius:50%; background:#0F9B8E; color:#fff; font-weight:800; display:flex; align-items:center; justify-content:center; margin-bottom:8px; }
+.hv-gpaso b { color:#12233A; display:block; margin-bottom:4px; } .hv-gpaso p { margin:0; font-size:12.5px; line-height:1.5; }
+.hv-glos { display:grid; grid-template-columns:1fr 1fr; gap:8px 18px; font-size:12.5px; line-height:1.5; }
+.hv-glos div b { color:#1F4E78; }
+.hv-faq details { border-bottom:1px solid #eef1f6; padding:8px 0; font-size:13px; } .hv-faq summary { cursor:pointer; font-weight:600; color:#12233A; } .hv-faq p { margin:6px 0 2px 16px; line-height:1.55; color:#4b5a6d; }
+@media (max-width:1100px){ .hv-ay{grid-template-columns:1fr;} .hv-gpasos{grid-template-columns:1fr 1fr;} .hv-glos{grid-template-columns:1fr;} }
+
+</style>
 </head>
 <body>
 <div id="hm-cargando"><div class="rueda"></div><b>Cargando periodo…</b><span id="hm-cargando-txt"></span></div>
@@ -209,6 +309,7 @@
       </div>
     </div>
     <nav>
+      <a data-vista="hojavida" id="nav-hojavida" class="hv-nav" onclick="cambiarVista('hojavida')">📇 HOJA VIDA PDV</a>
       <a data-vista="visitas" id="nav-visitas" onclick="cambiarVista('visitas')" style="display:none;">✅ % Cumplimiento Visitas Mandatorias</a>
       <a class="active" data-vista="resumen" onclick="cambiarVista('resumen')">📊 Indicador Exhibiciones</a>
       <a data-vista="fotos" onclick="cambiarVista('fotos')">🖼️ Registro Fotografico</a>
@@ -247,8 +348,50 @@
         <h1>Dashboard Mercaderismo DON CHICHARRON</h1>
         <div class="sub">Seguimiento de actividades en punto de venta — NOVIEMBRE</div>
       </div>
-      <div class="corte">Ultimo corte: <b id="fecha-corte">-</b><br>Generado: 12/11/2026 07:30</div>
+      <div class="corte">Ultimo corte: <b id="fecha-corte">-</b><br>Generado: 12/11/2026 23:50</div>
     </div>
+
+    <!-- HOJA-VIDA-PDV-V1 -->
+<div id="vista-hojavida" class="vista" style="display:none;">
+  <div class="hv-tabs" id="hv-tabs">
+    <button data-t="resumen" class="on">📊 Resumen ejecutivo</button>
+    <button data-t="pareto">🏆 Pareto comercial</button>
+    <button data-t="hoja">📇 Hoja de vida del PDV</button>
+    <button data-t="diag">🩺 Diagnóstico automático</button>
+    <button data-t="acc">✅ Acciones y seguimiento</button>
+    <button data-t="logica">🧠 Lógica del diagnóstico</button>
+    <button data-t="guia" class="hv-tguia">📘 Cómo usar</button>
+    <button class="hv-ttour" onclick="hvTour(0)">▶ Recorrido guiado</button>
+  </div>
+  <div class="hv-fil" id="hv-fil">
+    <div><label>Cadena</label><select id="hv-f-cad"></select></div>
+    <div><label>Ciudad</label><select id="hv-f-ciu"></select></div>
+    <div><label>Coordinador</label><select id="hv-f-coord"></select></div>
+    <div><label>Mercaderista</label><select id="hv-f-merc"></select></div>
+    <div><label>Clasificación Pareto</label><select id="hv-f-par"><option value="">Todas</option><option value="A">A · hasta 50 %</option><option value="B">B · 50 % a 80 %</option><option value="AB">Pareto (A + B)</option><option value="C">C · resto</option><option value="-">Sin dato de rotación</option></select></div>
+    <div><label>Prioridad</label><select id="hv-f-pri"><option value="">Todas</option><option value="ALTA">Alta</option><option value="MEDIA">Media</option><option value="BAJA">Baja</option><option value="OK">Sin alertas</option></select></div>
+    <div><label>Buscar PDV / NMER</label><input id="hv-f-q" placeholder="Ej: NMER1745, Castillo..."></div>
+  </div>
+  <div class="hv-par" id="hv-par">
+    <span>⚙️ <b>Parámetros</b> (ajustables · pendientes de aprobación):</span>
+    <span data-tip="Los PDV que hacen hasta este % de la venta acumulada son clase A.">Pareto A ≤ <input type="number" id="hv-p-a" value="50" min="1" max="99">%</span>
+    <span data-tip="Hasta este % acumulado son clase B. A + B = Pareto.">Pareto B ≤ <input type="number" id="hv-p-b" value="80" min="1" max="100">%</span>
+    <span data-tip="Si el inventario alcanza para más días de venta que este valor, se marca sobreinventario.">Sobreinventario &gt; <input type="number" id="hv-p-di" value="60" min="1"> días</span>
+    <span data-tip="Unidades que vencen en estos días o menos se marcan como próximas a vencer.">Corta fecha ≤ <input type="number" id="hv-p-cf" value="30" min="1"> días</span>
+    <span data-tip="Si la última visita tiene más días que este valor, se genera alerta de visita.">Sin visita &gt; <input type="number" id="hv-p-sv" value="10" min="1"> días</span>
+    <span data-tip="Unidades por caja. Inventarios múltiplo exacto de este valor se marcan como posible caja cerrada.">Caja = múltiplo de <input type="number" id="hv-p-cj" value="24" min="2"> und</span>
+    <span><label><input type="checkbox" id="hv-p-mp" checked style="width:auto"> Incluir marca propia Éxito (CROC)</label></span>
+  </div>
+  <div id="hv-c-resumen"></div>
+  <div id="hv-c-pareto" style="display:none"></div>
+  <div id="hv-c-hoja" style="display:none"></div>
+  <div id="hv-c-diag" style="display:none"></div>
+  <div id="hv-c-acc" style="display:none"></div>
+  <div id="hv-c-logica" style="display:none"></div>
+  <div id="hv-c-guia" style="display:none"></div>
+</div>
+<div id="hv-tour" style="display:none"><div id="hv-tour-luz"></div><div id="hv-tour-card"></div></div>
+<div id="hv-modal" onclick="this.style.display='none'"><img id="hv-modal-img" alt=""><div class="cap" id="hv-modal-cap"></div></div>
 
     <!-- VS-VISITAS-V6 -->
     <div id="vista-visitas" class="vista" style="display:none;">
@@ -2306,7 +2449,7 @@ if(xr(e,"index.xml"))throw new Error("Unsupported NUMBERS 09 file");throw new Er
     return v; }
   el.textContent = JSON.stringify(w(z.d));
 }); })();</script>
-<script id="hm-meta" type="application/json">{"version": "HMES-V1", "marca": "DON CHICHARRON", "meses": [{"k": "2026-07"}, {"k": "2026-08"}, {"k": "2026-09"}, {"k": "2026-10"}, {"k": "2026-11"}], "etq": {"2026-07": "JUL-26", "2026-08": "AGO-26", "2026-09": "SEP-26", "2026-10": "OCT-26", "2026-11": "NOV-26"}, "largo": {"2026-07": "JULIO 2026", "2026-08": "AGOSTO 2026", "2026-09": "SEPTIEMBRE 2026", "2026-10": "OCTUBRE 2026", "2026-11": "NOVIEMBRE 2026"}, "vigente": "2026-11", "ver": {"2026-07": "9b99a980", "2026-08": "1ffdfb74", "2026-09": "a7b453e8", "2026-10": "200eaa55", "2026-11": "b7065cc7", "visitas": "1ea3197c"}, "generado": "12/11/2026 07:30", "generado_v": "202611120730"}</script>
+<script id="hm-meta" type="application/json">{"version": "HMES-V1", "marca": "DON CHICHARRON", "meses": [{"k": "2026-07"}, {"k": "2026-08"}, {"k": "2026-09"}, {"k": "2026-10"}, {"k": "2026-11"}], "etq": {"2026-07": "JUL-26", "2026-08": "AGO-26", "2026-09": "SEP-26", "2026-10": "OCT-26", "2026-11": "NOV-26"}, "largo": {"2026-07": "JULIO 2026", "2026-08": "AGOSTO 2026", "2026-09": "SEPTIEMBRE 2026", "2026-10": "OCTUBRE 2026", "2026-11": "NOVIEMBRE 2026"}, "vigente": "2026-11", "ver": {"2026-07": "1da76555", "2026-08": "c2cb5a79", "2026-09": "7efd4bfb", "2026-10": "eb7fbd0f", "2026-11": "8307ddae", "visitas": "fbde58f0"}, "generado": "12/11/2026 23:50", "generado_v": "202611122350"}</script>
 <script>/*! pako 2.1.0 https://github.com/nodeca/pako @license (MIT AND Zlib) */
 !function(e,t){"object"==typeof exports&&"undefined"!=typeof module?t(exports):"function"==typeof define&&define.amd?define(["exports"],t):t((e="undefined"!=typeof globalThis?globalThis:e||self).pako={})}(this,(function(e){"use strict";var t=(e,t,i,n)=>{let a=65535&e|0,r=e>>>16&65535|0,o=0;for(;0!==i;){o=i>2e3?2e3:i,i-=o;do{a=a+t[n++]|0,r=r+a|0}while(--o);a%=65521,r%=65521}return a|r<<16|0};const i=new Uint32Array((()=>{let e,t=[];for(var i=0;i<256;i++){e=i;for(var n=0;n<8;n++)e=1&e?3988292384^e>>>1:e>>>1;t[i]=e}return t})());var n=(e,t,n,a)=>{const r=i,o=a+n;e^=-1;for(let i=a;i<o;i++)e=e>>>8^r[255&(e^t[i])];return-1^e};const a=16209;var r=function(e,t){let i,n,r,o,s,l,d,f,c,h,u,w,b,m,k,_,g,p,v,x,y,E,R,A;const Z=e.state;i=e.next_in,R=e.input,n=i+(e.avail_in-5),r=e.next_out,A=e.output,o=r-(t-e.avail_out),s=r+(e.avail_out-257),l=Z.dmax,d=Z.wsize,f=Z.whave,c=Z.wnext,h=Z.window,u=Z.hold,w=Z.bits,b=Z.lencode,m=Z.distcode,k=(1<<Z.lenbits)-1,_=(1<<Z.distbits)-1;e:do{w<15&&(u+=R[i++]<<w,w+=8,u+=R[i++]<<w,w+=8),g=b[u&k];t:for(;;){if(p=g>>>24,u>>>=p,w-=p,p=g>>>16&255,0===p)A[r++]=65535&g;else{if(!(16&p)){if(0==(64&p)){g=b[(65535&g)+(u&(1<<p)-1)];continue t}if(32&p){Z.mode=16191;break e}e.msg="invalid literal/length code",Z.mode=a;break e}v=65535&g,p&=15,p&&(w<p&&(u+=R[i++]<<w,w+=8),v+=u&(1<<p)-1,u>>>=p,w-=p),w<15&&(u+=R[i++]<<w,w+=8,u+=R[i++]<<w,w+=8),g=m[u&_];i:for(;;){if(p=g>>>24,u>>>=p,w-=p,p=g>>>16&255,!(16&p)){if(0==(64&p)){g=m[(65535&g)+(u&(1<<p)-1)];continue i}e.msg="invalid distance code",Z.mode=a;break e}if(x=65535&g,p&=15,w<p&&(u+=R[i++]<<w,w+=8,w<p&&(u+=R[i++]<<w,w+=8)),x+=u&(1<<p)-1,x>l){e.msg="invalid distance too far back",Z.mode=a;break e}if(u>>>=p,w-=p,p=r-o,x>p){if(p=x-p,p>f&&Z.sane){e.msg="invalid distance too far back",Z.mode=a;break e}if(y=0,E=h,0===c){if(y+=d-p,p<v){v-=p;do{A[r++]=h[y++]}while(--p);y=r-x,E=A}}else if(c<p){if(y+=d+c-p,p-=c,p<v){v-=p;do{A[r++]=h[y++]}while(--p);if(y=0,c<v){p=c,v-=p;do{A[r++]=h[y++]}while(--p);y=r-x,E=A}}}else if(y+=c-p,p<v){v-=p;do{A[r++]=h[y++]}while(--p);y=r-x,E=A}for(;v>2;)A[r++]=E[y++],A[r++]=E[y++],A[r++]=E[y++],v-=3;v&&(A[r++]=E[y++],v>1&&(A[r++]=E[y++]))}else{y=r-x;do{A[r++]=A[y++],A[r++]=A[y++],A[r++]=A[y++],v-=3}while(v>2);v&&(A[r++]=A[y++],v>1&&(A[r++]=A[y++]))}break}}break}}while(i<n&&r<s);v=w>>3,i-=v,w-=v<<3,u&=(1<<w)-1,e.next_in=i,e.next_out=r,e.avail_in=i<n?n-i+5:5-(i-n),e.avail_out=r<s?s-r+257:257-(r-s),Z.hold=u,Z.bits=w};const o=15,s=new Uint16Array([3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258,0,0]),l=new Uint8Array([16,16,16,16,16,16,16,16,17,17,17,17,18,18,18,18,19,19,19,19,20,20,20,20,21,21,21,21,16,72,78]),d=new Uint16Array([1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,257,385,513,769,1025,1537,2049,3073,4097,6145,8193,12289,16385,24577,0,0]),f=new Uint8Array([16,16,16,16,17,17,18,18,19,19,20,20,21,21,22,22,23,23,24,24,25,25,26,26,27,27,28,28,29,29,64,64]);var c=(e,t,i,n,a,r,c,h)=>{const u=h.bits;let w,b,m,k,_,g,p=0,v=0,x=0,y=0,E=0,R=0,A=0,Z=0,S=0,T=0,O=null;const U=new Uint16Array(16),D=new Uint16Array(16);let I,B,N,C=null;for(p=0;p<=o;p++)U[p]=0;for(v=0;v<n;v++)U[t[i+v]]++;for(E=u,y=o;y>=1&&0===U[y];y--);if(E>y&&(E=y),0===y)return a[r++]=20971520,a[r++]=20971520,h.bits=1,0;for(x=1;x<y&&0===U[x];x++);for(E<x&&(E=x),Z=1,p=1;p<=o;p++)if(Z<<=1,Z-=U[p],Z<0)return-1;if(Z>0&&(0===e||1!==y))return-1;for(D[1]=0,p=1;p<o;p++)D[p+1]=D[p]+U[p];for(v=0;v<n;v++)0!==t[i+v]&&(c[D[t[i+v]]++]=v);if(0===e?(O=C=c,g=20):1===e?(O=s,C=l,g=257):(O=d,C=f,g=0),T=0,v=0,p=x,_=r,R=E,A=0,m=-1,S=1<<E,k=S-1,1===e&&S>852||2===e&&S>592)return 1;for(;;){I=p-A,c[v]+1<g?(B=0,N=c[v]):c[v]>=g?(B=C[c[v]-g],N=O[c[v]-g]):(B=96,N=0),w=1<<p-A,b=1<<R,x=b;do{b-=w,a[_+(T>>A)+b]=I<<24|B<<16|N|0}while(0!==b);for(w=1<<p-1;T&w;)w>>=1;if(0!==w?(T&=w-1,T+=w):T=0,v++,0==--U[p]){if(p===y)break;p=t[i+c[v]]}if(p>E&&(T&k)!==m){for(0===A&&(A=E),_+=x,R=p-A,Z=1<<R;R+A<y&&(Z-=U[R+A],!(Z<=0));)R++,Z<<=1;if(S+=1<<R,1===e&&S>852||2===e&&S>592)return 1;m=T&k,a[m]=E<<24|R<<16|_-r|0}}return 0!==T&&(a[_+T]=p-A<<24|64<<16|0),h.bits=E,0},h={Z_NO_FLUSH:0,Z_PARTIAL_FLUSH:1,Z_SYNC_FLUSH:2,Z_FULL_FLUSH:3,Z_FINISH:4,Z_BLOCK:5,Z_TREES:6,Z_OK:0,Z_STREAM_END:1,Z_NEED_DICT:2,Z_ERRNO:-1,Z_STREAM_ERROR:-2,Z_DATA_ERROR:-3,Z_MEM_ERROR:-4,Z_BUF_ERROR:-5,Z_NO_COMPRESSION:0,Z_BEST_SPEED:1,Z_BEST_COMPRESSION:9,Z_DEFAULT_COMPRESSION:-1,Z_FILTERED:1,Z_HUFFMAN_ONLY:2,Z_RLE:3,Z_FIXED:4,Z_DEFAULT_STRATEGY:0,Z_BINARY:0,Z_TEXT:1,Z_UNKNOWN:2,Z_DEFLATED:8};const{Z_FINISH:u,Z_BLOCK:w,Z_TREES:b,Z_OK:m,Z_STREAM_END:k,Z_NEED_DICT:_,Z_STREAM_ERROR:g,Z_DATA_ERROR:p,Z_MEM_ERROR:v,Z_BUF_ERROR:x,Z_DEFLATED:y}=h,E=16180,R=16190,A=16191,Z=16192,S=16194,T=16199,O=16200,U=16206,D=16209,I=e=>(e>>>24&255)+(e>>>8&65280)+((65280&e)<<8)+((255&e)<<24);function B(){this.strm=null,this.mode=0,this.last=!1,this.wrap=0,this.havedict=!1,this.flags=0,this.dmax=0,this.check=0,this.total=0,this.head=null,this.wbits=0,this.wsize=0,this.whave=0,this.wnext=0,this.window=null,this.hold=0,this.bits=0,this.length=0,this.offset=0,this.extra=0,this.lencode=null,this.distcode=null,this.lenbits=0,this.distbits=0,this.ncode=0,this.nlen=0,this.ndist=0,this.have=0,this.next=null,this.lens=new Uint16Array(320),this.work=new Uint16Array(288),this.lendyn=null,this.distdyn=null,this.sane=0,this.back=0,this.was=0}const N=e=>{if(!e)return 1;const t=e.state;return!t||t.strm!==e||t.mode<E||t.mode>16211?1:0},C=e=>{if(N(e))return g;const t=e.state;return e.total_in=e.total_out=t.total=0,e.msg="",t.wrap&&(e.adler=1&t.wrap),t.mode=E,t.last=0,t.havedict=0,t.flags=-1,t.dmax=32768,t.head=null,t.hold=0,t.bits=0,t.lencode=t.lendyn=new Int32Array(852),t.distcode=t.distdyn=new Int32Array(592),t.sane=1,t.back=-1,m},z=e=>{if(N(e))return g;const t=e.state;return t.wsize=0,t.whave=0,t.wnext=0,C(e)},F=(e,t)=>{let i;if(N(e))return g;const n=e.state;return t<0?(i=0,t=-t):(i=5+(t>>4),t<48&&(t&=15)),t&&(t<8||t>15)?g:(null!==n.window&&n.wbits!==t&&(n.window=null),n.wrap=i,n.wbits=t,z(e))},L=(e,t)=>{if(!e)return g;const i=new B;e.state=i,i.strm=e,i.window=null,i.mode=E;const n=F(e,t);return n!==m&&(e.state=null),n};let M,H,j=!0;const K=e=>{if(j){M=new Int32Array(512),H=new Int32Array(32);let t=0;for(;t<144;)e.lens[t++]=8;for(;t<256;)e.lens[t++]=9;for(;t<280;)e.lens[t++]=7;for(;t<288;)e.lens[t++]=8;for(c(1,e.lens,0,288,M,0,e.work,{bits:9}),t=0;t<32;)e.lens[t++]=5;c(2,e.lens,0,32,H,0,e.work,{bits:5}),j=!1}e.lencode=M,e.lenbits=9,e.distcode=H,e.distbits=5},P=(e,t,i,n)=>{let a;const r=e.state;return null===r.window&&(r.wsize=1<<r.wbits,r.wnext=0,r.whave=0,r.window=new Uint8Array(r.wsize)),n>=r.wsize?(r.window.set(t.subarray(i-r.wsize,i),0),r.wnext=0,r.whave=r.wsize):(a=r.wsize-r.wnext,a>n&&(a=n),r.window.set(t.subarray(i-n,i-n+a),r.wnext),(n-=a)?(r.window.set(t.subarray(i-n,i),0),r.wnext=n,r.whave=r.wsize):(r.wnext+=a,r.wnext===r.wsize&&(r.wnext=0),r.whave<r.wsize&&(r.whave+=a))),0};var Y={inflateReset:z,inflateReset2:F,inflateResetKeep:C,inflateInit:e=>L(e,15),inflateInit2:L,inflate:(e,i)=>{let a,o,s,l,d,f,h,B,C,z,F,L,M,H,j,Y,G,X,W,q,J,Q,V=0;const $=new Uint8Array(4);let ee,te;const ie=new Uint8Array([16,17,18,0,8,7,9,6,10,5,11,4,12,3,13,2,14,1,15]);if(N(e)||!e.output||!e.input&&0!==e.avail_in)return g;a=e.state,a.mode===A&&(a.mode=Z),d=e.next_out,s=e.output,h=e.avail_out,l=e.next_in,o=e.input,f=e.avail_in,B=a.hold,C=a.bits,z=f,F=h,Q=m;e:for(;;)switch(a.mode){case E:if(0===a.wrap){a.mode=Z;break}for(;C<16;){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}if(2&a.wrap&&35615===B){0===a.wbits&&(a.wbits=15),a.check=0,$[0]=255&B,$[1]=B>>>8&255,a.check=n(a.check,$,2,0),B=0,C=0,a.mode=16181;break}if(a.head&&(a.head.done=!1),!(1&a.wrap)||(((255&B)<<8)+(B>>8))%31){e.msg="incorrect header check",a.mode=D;break}if((15&B)!==y){e.msg="unknown compression method",a.mode=D;break}if(B>>>=4,C-=4,J=8+(15&B),0===a.wbits&&(a.wbits=J),J>15||J>a.wbits){e.msg="invalid window size",a.mode=D;break}a.dmax=1<<a.wbits,a.flags=0,e.adler=a.check=1,a.mode=512&B?16189:A,B=0,C=0;break;case 16181:for(;C<16;){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}if(a.flags=B,(255&a.flags)!==y){e.msg="unknown compression method",a.mode=D;break}if(57344&a.flags){e.msg="unknown header flags set",a.mode=D;break}a.head&&(a.head.text=B>>8&1),512&a.flags&&4&a.wrap&&($[0]=255&B,$[1]=B>>>8&255,a.check=n(a.check,$,2,0)),B=0,C=0,a.mode=16182;case 16182:for(;C<32;){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}a.head&&(a.head.time=B),512&a.flags&&4&a.wrap&&($[0]=255&B,$[1]=B>>>8&255,$[2]=B>>>16&255,$[3]=B>>>24&255,a.check=n(a.check,$,4,0)),B=0,C=0,a.mode=16183;case 16183:for(;C<16;){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}a.head&&(a.head.xflags=255&B,a.head.os=B>>8),512&a.flags&&4&a.wrap&&($[0]=255&B,$[1]=B>>>8&255,a.check=n(a.check,$,2,0)),B=0,C=0,a.mode=16184;case 16184:if(1024&a.flags){for(;C<16;){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}a.length=B,a.head&&(a.head.extra_len=B),512&a.flags&&4&a.wrap&&($[0]=255&B,$[1]=B>>>8&255,a.check=n(a.check,$,2,0)),B=0,C=0}else a.head&&(a.head.extra=null);a.mode=16185;case 16185:if(1024&a.flags&&(L=a.length,L>f&&(L=f),L&&(a.head&&(J=a.head.extra_len-a.length,a.head.extra||(a.head.extra=new Uint8Array(a.head.extra_len)),a.head.extra.set(o.subarray(l,l+L),J)),512&a.flags&&4&a.wrap&&(a.check=n(a.check,o,L,l)),f-=L,l+=L,a.length-=L),a.length))break e;a.length=0,a.mode=16186;case 16186:if(2048&a.flags){if(0===f)break e;L=0;do{J=o[l+L++],a.head&&J&&a.length<65536&&(a.head.name+=String.fromCharCode(J))}while(J&&L<f);if(512&a.flags&&4&a.wrap&&(a.check=n(a.check,o,L,l)),f-=L,l+=L,J)break e}else a.head&&(a.head.name=null);a.length=0,a.mode=16187;case 16187:if(4096&a.flags){if(0===f)break e;L=0;do{J=o[l+L++],a.head&&J&&a.length<65536&&(a.head.comment+=String.fromCharCode(J))}while(J&&L<f);if(512&a.flags&&4&a.wrap&&(a.check=n(a.check,o,L,l)),f-=L,l+=L,J)break e}else a.head&&(a.head.comment=null);a.mode=16188;case 16188:if(512&a.flags){for(;C<16;){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}if(4&a.wrap&&B!==(65535&a.check)){e.msg="header crc mismatch",a.mode=D;break}B=0,C=0}a.head&&(a.head.hcrc=a.flags>>9&1,a.head.done=!0),e.adler=a.check=0,a.mode=A;break;case 16189:for(;C<32;){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}e.adler=a.check=I(B),B=0,C=0,a.mode=R;case R:if(0===a.havedict)return e.next_out=d,e.avail_out=h,e.next_in=l,e.avail_in=f,a.hold=B,a.bits=C,_;e.adler=a.check=1,a.mode=A;case A:if(i===w||i===b)break e;case Z:if(a.last){B>>>=7&C,C-=7&C,a.mode=U;break}for(;C<3;){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}switch(a.last=1&B,B>>>=1,C-=1,3&B){case 0:a.mode=16193;break;case 1:if(K(a),a.mode=T,i===b){B>>>=2,C-=2;break e}break;case 2:a.mode=16196;break;case 3:e.msg="invalid block type",a.mode=D}B>>>=2,C-=2;break;case 16193:for(B>>>=7&C,C-=7&C;C<32;){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}if((65535&B)!=(B>>>16^65535)){e.msg="invalid stored block lengths",a.mode=D;break}if(a.length=65535&B,B=0,C=0,a.mode=S,i===b)break e;case S:a.mode=16195;case 16195:if(L=a.length,L){if(L>f&&(L=f),L>h&&(L=h),0===L)break e;s.set(o.subarray(l,l+L),d),f-=L,l+=L,h-=L,d+=L,a.length-=L;break}a.mode=A;break;case 16196:for(;C<14;){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}if(a.nlen=257+(31&B),B>>>=5,C-=5,a.ndist=1+(31&B),B>>>=5,C-=5,a.ncode=4+(15&B),B>>>=4,C-=4,a.nlen>286||a.ndist>30){e.msg="too many length or distance symbols",a.mode=D;break}a.have=0,a.mode=16197;case 16197:for(;a.have<a.ncode;){for(;C<3;){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}a.lens[ie[a.have++]]=7&B,B>>>=3,C-=3}for(;a.have<19;)a.lens[ie[a.have++]]=0;if(a.lencode=a.lendyn,a.lenbits=7,ee={bits:a.lenbits},Q=c(0,a.lens,0,19,a.lencode,0,a.work,ee),a.lenbits=ee.bits,Q){e.msg="invalid code lengths set",a.mode=D;break}a.have=0,a.mode=16198;case 16198:for(;a.have<a.nlen+a.ndist;){for(;V=a.lencode[B&(1<<a.lenbits)-1],j=V>>>24,Y=V>>>16&255,G=65535&V,!(j<=C);){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}if(G<16)B>>>=j,C-=j,a.lens[a.have++]=G;else{if(16===G){for(te=j+2;C<te;){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}if(B>>>=j,C-=j,0===a.have){e.msg="invalid bit length repeat",a.mode=D;break}J=a.lens[a.have-1],L=3+(3&B),B>>>=2,C-=2}else if(17===G){for(te=j+3;C<te;){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}B>>>=j,C-=j,J=0,L=3+(7&B),B>>>=3,C-=3}else{for(te=j+7;C<te;){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}B>>>=j,C-=j,J=0,L=11+(127&B),B>>>=7,C-=7}if(a.have+L>a.nlen+a.ndist){e.msg="invalid bit length repeat",a.mode=D;break}for(;L--;)a.lens[a.have++]=J}}if(a.mode===D)break;if(0===a.lens[256]){e.msg="invalid code -- missing end-of-block",a.mode=D;break}if(a.lenbits=9,ee={bits:a.lenbits},Q=c(1,a.lens,0,a.nlen,a.lencode,0,a.work,ee),a.lenbits=ee.bits,Q){e.msg="invalid literal/lengths set",a.mode=D;break}if(a.distbits=6,a.distcode=a.distdyn,ee={bits:a.distbits},Q=c(2,a.lens,a.nlen,a.ndist,a.distcode,0,a.work,ee),a.distbits=ee.bits,Q){e.msg="invalid distances set",a.mode=D;break}if(a.mode=T,i===b)break e;case T:a.mode=O;case O:if(f>=6&&h>=258){e.next_out=d,e.avail_out=h,e.next_in=l,e.avail_in=f,a.hold=B,a.bits=C,r(e,F),d=e.next_out,s=e.output,h=e.avail_out,l=e.next_in,o=e.input,f=e.avail_in,B=a.hold,C=a.bits,a.mode===A&&(a.back=-1);break}for(a.back=0;V=a.lencode[B&(1<<a.lenbits)-1],j=V>>>24,Y=V>>>16&255,G=65535&V,!(j<=C);){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}if(Y&&0==(240&Y)){for(X=j,W=Y,q=G;V=a.lencode[q+((B&(1<<X+W)-1)>>X)],j=V>>>24,Y=V>>>16&255,G=65535&V,!(X+j<=C);){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}B>>>=X,C-=X,a.back+=X}if(B>>>=j,C-=j,a.back+=j,a.length=G,0===Y){a.mode=16205;break}if(32&Y){a.back=-1,a.mode=A;break}if(64&Y){e.msg="invalid literal/length code",a.mode=D;break}a.extra=15&Y,a.mode=16201;case 16201:if(a.extra){for(te=a.extra;C<te;){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}a.length+=B&(1<<a.extra)-1,B>>>=a.extra,C-=a.extra,a.back+=a.extra}a.was=a.length,a.mode=16202;case 16202:for(;V=a.distcode[B&(1<<a.distbits)-1],j=V>>>24,Y=V>>>16&255,G=65535&V,!(j<=C);){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}if(0==(240&Y)){for(X=j,W=Y,q=G;V=a.distcode[q+((B&(1<<X+W)-1)>>X)],j=V>>>24,Y=V>>>16&255,G=65535&V,!(X+j<=C);){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}B>>>=X,C-=X,a.back+=X}if(B>>>=j,C-=j,a.back+=j,64&Y){e.msg="invalid distance code",a.mode=D;break}a.offset=G,a.extra=15&Y,a.mode=16203;case 16203:if(a.extra){for(te=a.extra;C<te;){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}a.offset+=B&(1<<a.extra)-1,B>>>=a.extra,C-=a.extra,a.back+=a.extra}if(a.offset>a.dmax){e.msg="invalid distance too far back",a.mode=D;break}a.mode=16204;case 16204:if(0===h)break e;if(L=F-h,a.offset>L){if(L=a.offset-L,L>a.whave&&a.sane){e.msg="invalid distance too far back",a.mode=D;break}L>a.wnext?(L-=a.wnext,M=a.wsize-L):M=a.wnext-L,L>a.length&&(L=a.length),H=a.window}else H=s,M=d-a.offset,L=a.length;L>h&&(L=h),h-=L,a.length-=L;do{s[d++]=H[M++]}while(--L);0===a.length&&(a.mode=O);break;case 16205:if(0===h)break e;s[d++]=a.length,h--,a.mode=O;break;case U:if(a.wrap){for(;C<32;){if(0===f)break e;f--,B|=o[l++]<<C,C+=8}if(F-=h,e.total_out+=F,a.total+=F,4&a.wrap&&F&&(e.adler=a.check=a.flags?n(a.check,s,F,d-F):t(a.check,s,F,d-F)),F=h,4&a.wrap&&(a.flags?B:I(B))!==a.check){e.msg="incorrect data check",a.mode=D;break}B=0,C=0}a.mode=16207;case 16207:if(a.wrap&&a.flags){for(;C<32;){if(0===f)break e;f--,B+=o[l++]<<C,C+=8}if(4&a.wrap&&B!==(4294967295&a.total)){e.msg="incorrect length check",a.mode=D;break}B=0,C=0}a.mode=16208;case 16208:Q=k;break e;case D:Q=p;break e;case 16210:return v;default:return g}return e.next_out=d,e.avail_out=h,e.next_in=l,e.avail_in=f,a.hold=B,a.bits=C,(a.wsize||F!==e.avail_out&&a.mode<D&&(a.mode<U||i!==u))&&P(e,e.output,e.next_out,F-e.avail_out),z-=e.avail_in,F-=e.avail_out,e.total_in+=z,e.total_out+=F,a.total+=F,4&a.wrap&&F&&(e.adler=a.check=a.flags?n(a.check,s,F,e.next_out-F):t(a.check,s,F,e.next_out-F)),e.data_type=a.bits+(a.last?64:0)+(a.mode===A?128:0)+(a.mode===T||a.mode===S?256:0),(0===z&&0===F||i===u)&&Q===m&&(Q=x),Q},inflateEnd:e=>{if(N(e))return g;let t=e.state;return t.window&&(t.window=null),e.state=null,m},inflateGetHeader:(e,t)=>{if(N(e))return g;const i=e.state;return 0==(2&i.wrap)?g:(i.head=t,t.done=!1,m)},inflateSetDictionary:(e,i)=>{const n=i.length;let a,r,o;return N(e)?g:(a=e.state,0!==a.wrap&&a.mode!==R?g:a.mode===R&&(r=1,r=t(r,i,n,0),r!==a.check)?p:(o=P(e,i,n,n),o?(a.mode=16210,v):(a.havedict=1,m)))},inflateInfo:"pako inflate (from Nodeca project)"};const G=(e,t)=>Object.prototype.hasOwnProperty.call(e,t);var X=function(e){const t=Array.prototype.slice.call(arguments,1);for(;t.length;){const i=t.shift();if(i){if("object"!=typeof i)throw new TypeError(i+"must be non-object");for(const t in i)G(i,t)&&(e[t]=i[t])}}return e},W=e=>{let t=0;for(let i=0,n=e.length;i<n;i++)t+=e[i].length;const i=new Uint8Array(t);for(let t=0,n=0,a=e.length;t<a;t++){let a=e[t];i.set(a,n),n+=a.length}return i};let q=!0;try{String.fromCharCode.apply(null,new Uint8Array(1))}catch(e){q=!1}const J=new Uint8Array(256);for(let e=0;e<256;e++)J[e]=e>=252?6:e>=248?5:e>=240?4:e>=224?3:e>=192?2:1;J[254]=J[254]=1;var Q=e=>{if("function"==typeof TextEncoder&&TextEncoder.prototype.encode)return(new TextEncoder).encode(e);let t,i,n,a,r,o=e.length,s=0;for(a=0;a<o;a++)i=e.charCodeAt(a),55296==(64512&i)&&a+1<o&&(n=e.charCodeAt(a+1),56320==(64512&n)&&(i=65536+(i-55296<<10)+(n-56320),a++)),s+=i<128?1:i<2048?2:i<65536?3:4;for(t=new Uint8Array(s),r=0,a=0;r<s;a++)i=e.charCodeAt(a),55296==(64512&i)&&a+1<o&&(n=e.charCodeAt(a+1),56320==(64512&n)&&(i=65536+(i-55296<<10)+(n-56320),a++)),i<128?t[r++]=i:i<2048?(t[r++]=192|i>>>6,t[r++]=128|63&i):i<65536?(t[r++]=224|i>>>12,t[r++]=128|i>>>6&63,t[r++]=128|63&i):(t[r++]=240|i>>>18,t[r++]=128|i>>>12&63,t[r++]=128|i>>>6&63,t[r++]=128|63&i);return t},V=(e,t)=>{const i=t||e.length;if("function"==typeof TextDecoder&&TextDecoder.prototype.decode)return(new TextDecoder).decode(e.subarray(0,t));let n,a;const r=new Array(2*i);for(a=0,n=0;n<i;){let t=e[n++];if(t<128){r[a++]=t;continue}let o=J[t];if(o>4)r[a++]=65533,n+=o-1;else{for(t&=2===o?31:3===o?15:7;o>1&&n<i;)t=t<<6|63&e[n++],o--;o>1?r[a++]=65533:t<65536?r[a++]=t:(t-=65536,r[a++]=55296|t>>10&1023,r[a++]=56320|1023&t)}}return((e,t)=>{if(t<65534&&e.subarray&&q)return String.fromCharCode.apply(null,e.length===t?e:e.subarray(0,t));let i="";for(let n=0;n<t;n++)i+=String.fromCharCode(e[n]);return i})(r,a)},$=(e,t)=>{(t=t||e.length)>e.length&&(t=e.length);let i=t-1;for(;i>=0&&128==(192&e[i]);)i--;return i<0||0===i?t:i+J[e[i]]>t?i:t},ee={2:"need dictionary",1:"stream end",0:"","-1":"file error","-2":"stream error","-3":"data error","-4":"insufficient memory","-5":"buffer error","-6":"incompatible version"};var te=function(){this.input=null,this.next_in=0,this.avail_in=0,this.total_in=0,this.output=null,this.next_out=0,this.avail_out=0,this.total_out=0,this.msg="",this.state=null,this.data_type=2,this.adler=0};var ie=function(){this.text=0,this.time=0,this.xflags=0,this.os=0,this.extra=null,this.extra_len=0,this.name="",this.comment="",this.hcrc=0,this.done=!1};const ne=Object.prototype.toString,{Z_NO_FLUSH:ae,Z_FINISH:re,Z_OK:oe,Z_STREAM_END:se,Z_NEED_DICT:le,Z_STREAM_ERROR:de,Z_DATA_ERROR:fe,Z_MEM_ERROR:ce}=h;function he(e){this.options=X({chunkSize:65536,windowBits:15,to:""},e||{});const t=this.options;t.raw&&t.windowBits>=0&&t.windowBits<16&&(t.windowBits=-t.windowBits,0===t.windowBits&&(t.windowBits=-15)),!(t.windowBits>=0&&t.windowBits<16)||e&&e.windowBits||(t.windowBits+=32),t.windowBits>15&&t.windowBits<48&&0==(15&t.windowBits)&&(t.windowBits|=15),this.err=0,this.msg="",this.ended=!1,this.chunks=[],this.strm=new te,this.strm.avail_out=0;let i=Y.inflateInit2(this.strm,t.windowBits);if(i!==oe)throw new Error(ee[i]);if(this.header=new ie,Y.inflateGetHeader(this.strm,this.header),t.dictionary&&("string"==typeof t.dictionary?t.dictionary=Q(t.dictionary):"[object ArrayBuffer]"===ne.call(t.dictionary)&&(t.dictionary=new Uint8Array(t.dictionary)),t.raw&&(i=Y.inflateSetDictionary(this.strm,t.dictionary),i!==oe)))throw new Error(ee[i])}function ue(e,t){const i=new he(t);if(i.push(e),i.err)throw i.msg||ee[i.err];return i.result}he.prototype.push=function(e,t){const i=this.strm,n=this.options.chunkSize,a=this.options.dictionary;let r,o,s;if(this.ended)return!1;for(o=t===~~t?t:!0===t?re:ae,"[object ArrayBuffer]"===ne.call(e)?i.input=new Uint8Array(e):i.input=e,i.next_in=0,i.avail_in=i.input.length;;){for(0===i.avail_out&&(i.output=new Uint8Array(n),i.next_out=0,i.avail_out=n),r=Y.inflate(i,o),r===le&&a&&(r=Y.inflateSetDictionary(i,a),r===oe?r=Y.inflate(i,o):r===fe&&(r=le));i.avail_in>0&&r===se&&i.state.wrap>0&&0!==e[i.next_in];)Y.inflateReset(i),r=Y.inflate(i,o);switch(r){case de:case fe:case le:case ce:return this.onEnd(r),this.ended=!0,!1}if(s=i.avail_out,i.next_out&&(0===i.avail_out||r===se))if("string"===this.options.to){let e=$(i.output,i.next_out),t=i.next_out-e,a=V(i.output,e);i.next_out=t,i.avail_out=n-t,t&&i.output.set(i.output.subarray(e,e+t),0),this.onData(a)}else this.onData(i.output.length===i.next_out?i.output:i.output.subarray(0,i.next_out));if(r!==oe||0!==s){if(r===se)return r=Y.inflateEnd(this.strm),this.onEnd(r),this.ended=!0,!0;if(0===i.avail_in)break}}return!0},he.prototype.onData=function(e){this.chunks.push(e)},he.prototype.onEnd=function(e){e===oe&&("string"===this.options.to?this.result=this.chunks.join(""):this.result=W(this.chunks)),this.chunks=[],this.err=e,this.msg=this.strm.msg};var we=he,be=ue,me=function(e,t){return(t=t||{}).raw=!0,ue(e,t)},ke=ue,_e=h,ge={Inflate:we,inflate:be,inflateRaw:me,ungzip:ke,constants:_e};e.Inflate=we,e.constants=_e,e.default=ge,e.inflate=be,e.inflateRaw=me,e.ungzip=ke,Object.defineProperty(e,"__esModule",{value:!0})}));
 </script>
@@ -6711,6 +6854,491 @@ if (document.readyState === 'loading') document.addEventListener('DOMContentLoad
     if (HM.errores.length) console.error('HISTORICO: meses con error de carga', HM.errores);
   }, 0);
 })();
+</script>
+<script src="datos/hoja_vida.js?v=d4b80de9"></script>
+<script>
+/* HOJA-VIDA-PDV-V1 — Modulo Inteligencia Comercial y Diagnostico de PDV (DON CHICHARRON).
+   Modulo independiente: no lee ni modifica los filtros ni los datos de las demas vistas. */
+(function () {
+'use strict';
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const nrm = s => String(s == null ? '' : s).normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase();
+const fN = (v, d = 0) => (v == null || isNaN(v)) ? '—' : Number(v).toLocaleString('es-CO', {minimumFractionDigits: d, maximumFractionDigits: d});
+const fP = (v, d = 1) => (v == null || isNaN(v)) ? '—' : fN(v, d) + ' %';
+const fD = s => s ? s.slice(8, 10) + '/' + s.slice(5, 7) + '/' + s.slice(0, 4) : '—';
+const dDif = (a, b) => Math.round((Date.parse(a + 'T00:00:00') - Date.parse(b + 'T00:00:00')) / 864e5);
+const PRI = {ALTA: 3, MEDIA: 2, BAJA: 1, OK: 0};
+const EST = {C: ['c', 'Riesgo confirmado por datos'], P: ['p', 'Posible riesgo'], I: ['i', 'Información insuficiente'], V: ['v', 'Pendiente de verificación']};
+let D = null, PDV = [], CORTE = '', tab = 'resumen', sel = null, visSel = null, diagFiltro = '', charts = {};
+
+function cargar() {
+  if (D) return true;
+  try {
+    const b = atob(window.HVD_B64), u = new Uint8Array(b.length);
+    for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i);
+    D = JSON.parse(new TextDecoder().decode(pako.inflate(u)));
+  } catch (e) { console.error('HOJA VIDA PDV: no se pudo leer el paquete', e); return false; }
+  PDV = D.pdv;
+  PDV.forEach(p => p.dias.forEach(x => { if (x.d > CORTE) CORTE = x.d; }));
+  iniFiltros();
+  return true;
+}
+const par = () => ({a: +$('hv-p-a').value || 50, b: +$('hv-p-b').value || 80, di: +$('hv-p-di').value || 60,
+  cf: +$('hv-p-cf').value || 30, sv: +$('hv-p-sv').value || 10, cj: +$('hv-p-cj').value || 24, mp: $('hv-p-mp').checked});
+
+/* ===================== MOTOR DE DIAGNOSTICO ===================== */
+function evaluar() {
+  const P = par();
+  // Pareto sobre el universo completo con dato de rotacion (no se fija cantidad de PDV)
+  const con = PDV.filter(p => p.und > 0).sort((x, y) => y.und - x.und);
+  const tot = con.reduce((s, p) => s + p.und, 0); let ac = 0;
+  PDV.forEach(p => { p._rk = null; p._part = null; p._acum = null; p._cl = '-'; });
+  con.forEach((p, i) => {
+    const prev = ac; ac += p.und;
+    p._rk = i + 1; p._part = p.und / tot * 100; p._acum = ac / tot * 100;
+    p._cl = prev / tot * 100 < P.a ? 'A' : (prev / tot * 100 < P.b ? 'B' : 'C');
+  });
+  D._totUnd = tot; D._nPar = con.filter(p => p._cl !== 'C').length;
+  PDV.forEach(p => diagnosticar(p, P));
+}
+function exh(x) { const i = x.ind || {}; return (i['LUGAR DE EXHIBICION'] || 0) + (i['EXHIBICIONES GRATIS'] || 0) + (i['EXHIBICIONES NEGOCIADAS'] || 0); }
+function diagnosticar(p, P) {
+  const al = [], pareto = p._cl === 'A' || p._cl === 'B';
+  const sube = pr => pareto ? (pr === 'BAJA' ? 'MEDIA' : 'ALTA') : pr;
+  const add = (o) => al.push(o);
+  // ---- inventario
+  const prods = p.inv ? p.inv.prods.filter(x => P.mp || x.m === 'DON CHICHARRON') : [];
+  const inv = prods.reduce((s, x) => s + Math.max(x.q, 0), 0);
+  const neg = prods.filter(x => x.q < 0);
+  const dInv = (p.inv && p.und > 0) ? inv / p.und * 30 : null;
+  const cajas = prods.filter(x => x.q >= P.cj && x.q % P.cj === 0);
+  // ---- visitas
+  const vis = p.dias; const tareas = vis.filter(x => x.f.indexOf('TAREAS') >= 0);
+  const ult = vis.length ? vis[vis.length - 1] : null;
+  const sinDias = ult ? dDif(CORTE, ult.d) : null;
+  const uT = tareas.length ? tareas[tareas.length - 1] : null, pT = tareas.length > 1 ? tareas[tareas.length - 2] : null;
+  const mes = CORTE.slice(0, 7), vm = p.vis[mes] || null;
+  const mPrev = Object.keys(p.vis).filter(k => k < mes).sort().pop(), vp = mPrev ? p.vis[mPrev] : null;
+  // ---- vencimientos (ultima toma por producto-lote)
+  const lk = {};
+  p.cf.forEach(x => { const k = (x.ean || x.p) + '|' + x.lote; if (!lk[k] || lk[k].t < x.t) lk[k] = x; });
+  const cf = Object.values(lk).filter(x => dDif(CORTE, x.t) <= 45).map(x => {
+    const r = x.vence ? dDif(x.vence, CORTE) : null;
+    return Object.assign({}, x, {rest: r, est: r == null ? 'Sin fecha' : (r < 0 ? 'Vencido' : (r <= P.cf ? 'Próximo a vencer' : 'Vigente'))});
+  }).sort((a, b) => (a.rest ?? 9e9) - (b.rest ?? 9e9));
+  const venc = cf.filter(x => x.est === 'Vencido'), prox = cf.filter(x => x.est === 'Próximo a vencer');
+  // ---- agotados (ultima medicion)
+  const agU = p.ago.length ? p.ago[p.ago.length - 1] : null;
+  const ag = agU && dDif(CORTE, agU.d) <= 30 ? agU : null;   // solo medicion vigente (ultimos 30 dias)
+  const agPct = ag && ag.n ? ag.a / ag.n * 100 : null;
+  const invE = {}; prods.forEach(x => { invE[x.ean] = (invE[x.ean] || 0) + x.q; });
+  const agInv = ag ? ag.det.filter(d => d[2] === 'PRODUCTO AGOTADO' && invE[d[1]] > 0) : [];
+  const bod = p.bod.length ? p.bod[p.bod.length - 1] : null;
+  const bodNo = bod && bod[2] > 0 && ult && bod[0] === ult.d;
+
+  // ================= REGLAS =================
+  if (!ult) add({r: 'VISITA', ind: 'Última visita', val: 'Sin registro', evid: 'No hay tareas, encuestas ni mediciones PLF en el periodo cargado', mot: 'PDV sin ninguna visita registrada', e: 'C', pri: sube('MEDIA'), acc: 'Programar visita inmediata y contactar al mercaderista'});
+  else if (sinDias > P.sv) add({r: 'VISITA', ind: 'Días desde última visita', val: sinDias + ' días', evid: 'Última visita registrada: ' + fD(ult.d), mot: 'Supera ' + P.sv + ' días sin visita', e: 'C', pri: sube('MEDIA'), acc: 'Programar visita y verificar ruta del mercaderista'});
+  if (vp && vp[0] > 0 && vp[1] < vp[0]) add({r: 'CUMPL', ind: 'Cumplimiento visitas ' + mPrev, val: fN(vp[1]) + ' de ' + fN(vp[0]), evid: 'Cumplimiento ' + fP(vp[1] / vp[0] * 100, 0), mot: 'No se cumplieron las visitas mandatorias del mes anterior', e: 'C', pri: pareto ? 'MEDIA' : 'BAJA', acc: 'Revisar con el coordinador la frecuencia del PDV'});
+  if (!p.inv) add({r: 'SININV', ind: 'Inventario', val: 'Sin dato', evid: 'La cadena no envió inventario para este PDV', mot: 'No es posible calcular días de inventario', e: 'I', pri: 'BAJA', acc: 'Solicitar inventario de la cadena'});
+  else if (!(p.und > 0)) add({r: 'SINROT', ind: 'Rotación', val: 'Sin dato', evid: 'El plan no trae unidades promedio mes para este PDV', mot: 'No es posible calcular días de inventario', e: 'I', pri: 'BAJA', acc: 'Solicitar sell out del PDV al cliente'});
+  else if (dInv > P.di) add({r: 'SOBREINV', ind: 'Días de inventario', val: fN(dInv) + ' días', evid: fN(inv) + ' und en inventario vs ' + fN(p.und, 1) + ' und/mes de rotación', mot: 'Inventario superior a ' + P.di + ' días de venta', e: 'C', pri: sube('MEDIA'), acc: 'Verificar inventario físico; evaluar descuento POS o exhibición adicional'});
+  if (cajas.length) {
+    const u = cajas.reduce((s, x) => s + x.q, 0);
+    add({r: 'CAJA', ind: 'Posibles cajas cerradas', val: fN(u / P.cj, 0) + ' cajas (' + fN(u) + ' und)', prod: cajas.map(x => x.p + ' (' + fN(x.q) + ')').join(' · '),
+      evid: 'Cantidades múltiplo exacto de ' + P.cj + ' unidades' + (bodNo ? ' · mercaderista respondió NO a "¿sacó todo el inventario de bodega?" el ' + fD(bod[0]) : ''),
+      mot: bodNo ? 'Patrón de caja cerrada respaldado por respuesta de bodega' : 'Patrón de caja cerrada (no confirmado: falta validar unidad de embalaje)', e: bodNo ? 'V' : 'P', pri: bodNo ? 'ALTA' : sube('BAJA'), acc: 'Revisar bodega y sacar las cajas cerradas a góndola'});
+  } else if (bodNo) add({r: 'BODEGA', ind: 'Inventario en bodega', val: 'Respuesta NO', evid: 'Encuesta del ' + fD(bod[0]) + ': no se sacó todo el inventario de bodega', mot: 'Mercancía reportada en bodega', e: 'C', pri: sube('MEDIA'), acc: 'Sacar el inventario de bodega a exhibición'});
+  if (venc.length) add({r: 'VENCE', ind: 'Producto vencido', val: fN(venc.reduce((s, x) => s + (+x.u || 0), 0)) + ' und', prod: venc.map(x => x.p).filter((v, i, a) => a.indexOf(v) === i).join(' · '), evid: 'Toma de fechas: ' + venc.map(x => fD(x.t)).filter((v, i, a) => a.indexOf(v) === i).join(', '), mot: 'Unidades con fecha de vencimiento cumplida en la última toma', e: 'C', pri: 'ALTA', acc: 'Retirar/gestionar producto vencido con el PDV y reportar al cliente'});
+  if (prox.length) {
+    const u = prox.reduce((s, x) => s + (+x.u || 0), 0), conExceso = dInv != null && dInv > P.di;
+    add({r: 'PROX', ind: 'Próximo a vencer (≤ ' + P.cf + ' días)', val: fN(u) + ' und', prod: prox.map(x => x.p + ' (' + x.rest + ' d)').join(' · '), evid: 'Última toma de fechas del PDV', mot: conExceso ? 'Corta fecha con sobreinventario' : 'Unidades próximas a vencer', e: 'C', pri: conExceso ? 'ALTA' : sube('BAJA'), acc: 'Evaluar descuento POS y rotación FIFO del producto'});
+  }
+  if (agPct > 0) add({r: 'AGOT', ind: 'Agotados', val: fP(agPct, 0), prod: ag.det.map(d => d[0]).join(' · '), evid: 'Medición del ' + fD(ag.d) + ': ' + ag.a + ' de ' + ag.n + ' productos no disponibles', mot: 'Productos no disponibles en góndola', e: 'C', pri: agPct >= 30 ? sube('MEDIA') : 'BAJA', acc: 'Gestionar pedido/surtido con el PDV'});
+  if (agInv.length) add({r: 'AGINV', ind: 'Agotado con inventario en sistema', val: agInv.length + ' producto(s)', prod: agInv.map(d => d[0] + ' (inv ' + fN(invE[d[1]]) + ')').join(' · '), evid: 'Góndola agotada el ' + fD(ag.d) + ' y la cadena reporta inventario', mot: 'Posible producto en bodega sin exhibir', e: 'V', pri: sube('MEDIA'), acc: 'Verificar bodega y surtir el lineal'});
+  if (uT && pT && exh(uT) < exh(pT)) add({r: 'EXH', ind: 'Exhibiciones (fotos)', val: exh(pT) + ' → ' + exh(uT), evid: 'Visitas ' + fD(pT.d) + ' vs ' + fD(uT.d), mot: 'Bajaron las fotos de exhibición: puede ser exhibición perdida o foto no tomada', e: 'V', pri: pareto ? 'MEDIA' : 'BAJA', acc: 'Confirmar con el mercaderista si se perdió la exhibición'});
+  if (uT && !(uT.ind['EXHIBICIONES LINEALES'] > 0)) add({r: 'LINEAL', ind: 'Foto de lineal', val: 'Sin foto', evid: 'Última visita con tareas: ' + fD(uT.d), mot: 'No hay evidencia del lineal (no se asume incumplimiento)', e: 'I', pri: 'BAJA', acc: 'Solicitar foto del lineal en la próxima visita'});
+  if (neg.length) add({r: 'NEG', ind: 'Inventario negativo', val: neg.length + ' producto(s)', prod: neg.map(x => x.p + ' (' + x.q + ')').join(' · '), evid: 'Reporte de inventario de la cadena', mot: 'Inconsistencia del sistema de la cadena', e: 'I', pri: 'BAJA', acc: 'Reportar inconsistencia al cliente'});
+  const riesgos = al.filter(a => (a.e === 'C' || a.e === 'V') && a.r !== 'CUMPL').map(a => a.r).filter((v, i, x) => x.indexOf(v) === i);
+  if (riesgos.length >= 3) al.unshift({r: 'MULTI', ind: 'Múltiples condiciones de riesgo', val: riesgos.length + ' condiciones', evid: al.filter(a => a.e !== 'I').map(a => a.ind).join(' · '), mot: 'Varias alertas simultáneas en el mismo PDV', e: 'C', pri: 'ALTA', acc: 'Visita del coordinador al PDV'});
+  const pri = al.reduce((m, a) => PRI[a.pri] > PRI[m] && a.e !== 'I' ? a.pri : m, 'OK');
+  const score = al.reduce((s, a) => s + (a.e === 'I' ? 0 : PRI[a.pri]), 0) * (p._cl === 'A' ? 1.5 : p._cl === 'B' ? 1.2 : 1);
+  if (agU && !ag) add({r: 'AGVIEJO', ind: 'Medición de agotados', val: 'Desactualizada', evid: 'Última medición: ' + fD(agU.d), mot: 'No hay medición de agotados en los últimos 30 días', e: 'I', pri: 'BAJA', acc: 'Realizar medición de agotados en la próxima visita'});
+  p._d = {al, pri, score, agU, prods, inv, neg, dInv, cajas, ult, sinDias, uT, pT, vm, vp, mPrev, cf, venc, prox, ag, agPct, agInv, bod, bodNo, riesgos};
+}
+
+/* ===================== FILTROS ===================== */
+function iniFiltros() {
+  const op = (id, k, lbl) => { const v = [...new Set(PDV.map(p => p[k]).filter(Boolean))].sort();
+    $(id).innerHTML = '<option value="">' + lbl + '</option>' + v.map(x => '<option>' + esc(x) + '</option>').join(''); };
+  op('hv-f-cad', 'cad', 'Todas'); op('hv-f-ciu', 'ciu', 'Todas'); op('hv-f-coord', 'coord', 'Todos'); op('hv-f-merc', 'merc', 'Todos');
+  ['hv-f-cad', 'hv-f-ciu', 'hv-f-coord', 'hv-f-merc', 'hv-f-par', 'hv-f-pri'].forEach(id => $(id).addEventListener('change', pintar));
+  $('hv-f-q').addEventListener('input', pintar);
+  ['hv-p-a', 'hv-p-b', 'hv-p-di', 'hv-p-cf', 'hv-p-sv', 'hv-p-cj', 'hv-p-mp'].forEach(id => $(id).addEventListener('change', () => { evaluar(); pintar(); }));
+  document.querySelectorAll('#hv-tabs button[data-t]').forEach(b => b.addEventListener('click', () => irTab(b.dataset.t)));
+}
+function filtrados() {
+  const f = {cad: $('hv-f-cad').value, ciu: $('hv-f-ciu').value, coord: $('hv-f-coord').value, merc: $('hv-f-merc').value, par: $('hv-f-par').value, pri: $('hv-f-pri').value, q: nrm($('hv-f-q').value)};
+  return PDV.filter(p => (!f.cad || p.cad === f.cad) && (!f.ciu || p.ciu === f.ciu) && (!f.coord || p.coord === f.coord) && (!f.merc || p.merc === f.merc)
+    && (!f.par || (f.par === 'AB' ? (p._cl === 'A' || p._cl === 'B') : p._cl === f.par)) && (!f.pri || p._d.pri === f.pri)
+    && (!f.q || nrm(p.nmer + ' ' + p.pdv + ' ' + p.cod).indexOf(f.q) >= 0));
+}
+function irTab(t) {
+  tab = t; document.querySelectorAll('#hv-tabs button').forEach(b => b.classList.toggle('on', b.dataset.t === t));
+  ['resumen', 'pareto', 'hoja', 'diag', 'acc', 'logica', 'guia'].forEach(k => $('hv-c-' + k).style.display = k === t ? '' : 'none');
+  $('hv-fil').style.display = (t === 'logica' || t === 'guia') ? 'none' : '';
+  pintar();
+}
+window.hvVer = function (nmer) { sel = nmer; visSel = null; irTab('hoja'); window.scrollTo(0, 0); };
+window.hvDiag = function (r) { diagFiltro = r; irTab('diag'); };
+window.hvFoto = function (u, c) { $('hv-modal-img').src = u; $('hv-modal-cap').textContent = c; $('hv-modal').style.display = 'flex'; };
+window.hvVis = function (d) { visSel = d; pintarHoja(); };
+
+const chipCl = c => c === 'A' ? '<span class="hv-chip pa">A</span>' : c === 'B' ? '<span class="hv-chip pb">B</span>' : c === 'C' ? '<span class="hv-chip pc">C</span>' : '<span class="hv-chip gr">s/d</span>';
+const chipPri = p => p === 'OK' ? '<span class="hv-chip ok">Sin alertas</span>' : '<span class="hv-chip ' + p[0] + '">' + p[0] + p.slice(1).toLowerCase() + '</span>';
+const estado = e => '<span class="hv-est ' + EST[e][0] + '">' + EST[e][1] + '</span>';
+function orden(l) { return l.slice().sort((a, b) => b._d.score - a._d.score || (a._rk || 9999) - (b._rk || 9999)); }
+function pintar() {
+  if (!D) return;
+  ({resumen: pintarResumen, pareto: pintarPareto, hoja: pintarHoja, diag: pintarDiag, acc: pintarAcc, logica: pintarLogica, guia: pintarGuia})[tab]();
+  const c = $('hv-c-' + tab); if (tab !== 'guia') c.insertAdjacentHTML('afterbegin', ayuda(tab)); ponerTips(c);
+}
+
+/* ===================== VISTA 1: RESUMEN ===================== */
+function pintarResumen() {
+  const L = filtrados(), has = r => L.filter(p => p._d.al.some(a => a.r === r || (Array.isArray(r) && r.indexOf(a.r) >= 0)));
+  const k = [
+    ['', L.length, 'PDV analizados', ''], ['t2', L.filter(p => p._cl === 'A' || p._cl === 'B').length, 'PDV Pareto (A+B)', ''],
+    ['r', L.filter(p => p._d.pri === 'ALTA' || p._d.pri === 'MEDIA').length, 'PDV con alertas alta/media', ''],
+    ['o', has('VISITA').length, 'Sin visita reciente o sin visita', 'VISITA'], ['o', has('SOBREINV').length, 'Con sobreinventario', 'SOBREINV'],
+    ['p', has(['CAJA', 'BODEGA']).length, 'Posibles cajas cerradas / bodega', 'CAJA'], ['r', has(['VENCE', 'PROX']).length, 'Vencidos o próximos a vencer', 'PROX'],
+    ['p', has(['EXH', 'LINEAL']).length, 'Posible problema de exhibición', 'EXH'], ['o', has(['AGOT', 'AGINV']).length, 'Con agotados', 'AGOT'],
+    ['r', has('MULTI').length, 'Múltiples condiciones de riesgo', 'MULTI']];
+  const inv = L.reduce((s, p) => s + p._d.inv, 0), und = L.reduce((s, p) => s + (p.und || 0), 0);
+  const top = orden(L).slice(0, 400);
+  $('hv-c-resumen').innerHTML = '<div class="hv-kpis">' + k.map(x => `<div class="hv-kpi ${x[0]}" onclick="${x[3] ? `hvDiag('${x[3]}')` : ''}"><div class="n">${fN(x[1])}</div><div class="t">${x[2]}</div></div>`).join('') + '</div>'
+    + `<div class="hv-panel"><h3>Puntos de venta priorizados — ¿dónde actuar primero?</h3><div class="sub">Orden: puntaje de riesgo ponderado por Pareto. Inventario total filtrado: <b>${fN(inv)}</b> und · Rotación: <b>${fN(und)}</b> und/mes · Corte PLF: <b>${fD(CORTE)}</b>. Clic en un PDV para abrir su hoja de vida.</div>
+    <div style="text-align:right;margin:-4px 0 8px"><button class="hv-btn" onclick="hvExpResumen()">⬇ Descargar a Excel</button></div>
+    <div class="hv-tw"><table class="hv-t"><thead><tr><th>#</th><th>Prioridad</th><th>Pareto</th><th>NMER</th><th>Punto de venta</th><th>Coordinador</th><th class="num">Und prom/mes</th><th class="num">Inventario</th><th class="num">Días inv.</th><th>Última visita</th><th class="num">Visitas mes</th><th class="num">% Agot.</th><th class="num">Venc./Próx.</th><th class="num">Cajas</th><th>Alertas</th></tr></thead><tbody>`
+    + top.map((p, i) => { const d = p._d; return `<tr class="clk" onclick="hvVer('${p.nmer}')"><td>${i + 1}</td><td>${chipPri(d.pri)}</td><td>${chipCl(p._cl)} ${p._rk ? '<small>#' + p._rk + '</small>' : ''}</td><td>${p.nmer}</td><td>${esc(p.pdv)}</td><td>${esc(p.coord)}</td><td class="num">${fN(p.und, 1)}</td><td class="num">${p.inv ? fN(d.inv) : '<span class="hv-chip gr">s/d</span>'}</td><td class="num">${d.dInv == null ? '—' : fN(d.dInv)}</td><td>${d.ult ? fD(d.ult.d) + ' <small>(' + d.sinDias + ' d)</small>' : '<span class="hv-chip A">Sin visita</span>'}</td><td class="num">${d.vm ? fN(d.vm[1]) + '/' + fN(d.vm[0]) : '—'}</td><td class="num">${d.agPct == null ? '—' : fP(d.agPct, 0)}</td><td class="num">${d.venc.length + d.prox.length || '—'}</td><td class="num">${d.cajas.length ? fN(d.cajas.reduce((s, x) => s + x.q, 0) / par().cj) : '—'}</td><td>${d.al.filter(a => a.e !== 'I' && a.r !== 'MULTI').map(a => '<span class="hv-chip ' + a.pri[0] + '" style="margin:1px">' + REGLAS[a.r] + '</span>').join(' ') || '—'}</td></tr>`; }).join('')
+    + '</tbody></table></div></div>';
+}
+
+/* ===================== VISTA 2: PARETO ===================== */
+function pintarPareto() {
+  const P = par(), L = filtrados().filter(p => p.und > 0).sort((a, b) => b.und - a.und);
+  const sinRot = filtrados().filter(p => !(p.und > 0)).length;
+  const nA = L.filter(p => p._cl === 'A').length, nB = L.filter(p => p._cl === 'B').length;
+  $('hv-c-pareto').innerHTML = `<div class="hv-kpis"><div class="hv-kpi"><div class="n">${fN(D._totUnd)}</div><div class="t">Und promedio mes (universo total)</div></div><div class="hv-kpi t2"><div class="n">${fN(nA)}</div><div class="t">PDV clase A (hasta ${P.a} %)</div></div><div class="hv-kpi"><div class="n">${fN(nB)}</div><div class="t">PDV clase B (${P.a} % a ${P.b} %)</div></div><div class="hv-kpi g"><div class="n">${fN(L.length - nA - nB)}</div><div class="t">PDV clase C</div></div><div class="hv-kpi o"><div class="n">${fN(sinRot)}</div><div class="t">PDV sin dato de rotación</div></div></div>
+  <div class="hv-panel"><h3>Curva Pareto de rotación por PDV</h3><div class="sub">Fuente: ${esc(D.meta.fuente_rotacion)}. El universo Pareto sale de los datos (no se fija cantidad). Periodos de 3 y 6 meses: la fuente actual solo trae el promedio ENE-SEP — <b>información insuficiente</b> hasta recibir la rotación mensual.</div><div style="height:340px"><canvas id="hv-ch-par"></canvas></div></div>
+  <div class="hv-panel"><h3>Ranking comercial</h3><div style="text-align:right;margin:-30px 0 8px"><button class="hv-btn" onclick="hvExpPareto()">⬇ Descargar a Excel</button></div><div class="hv-tw"><table class="hv-t"><thead><tr><th>Rank</th><th>Clase</th><th>NMER</th><th>Punto de venta</th><th>Cadena</th><th>Ciudad</th><th class="num">Und prom/mes</th><th class="num">Venta prom/mes $</th><th class="num">% Part.</th><th class="num">% Acum.</th><th>Participación</th><th>Prioridad</th></tr></thead><tbody>`
+  + L.map(p => `<tr class="clk" onclick="hvVer('${p.nmer}')"><td>${p._rk}</td><td>${chipCl(p._cl)}</td><td>${p.nmer}</td><td>${esc(p.pdv)}</td><td>${esc(p.cad)}</td><td>${esc(p.ciu)}</td><td class="num">${fN(p.und, 1)}</td><td class="num">${fN(p.venta)}</td><td class="num">${fP(p._part, 2)}</td><td class="num">${fP(p._acum, 1)}</td><td><div class="hv-bar"><i style="width:${Math.min(100, p._part / L[0]._part * 100)}%"></i></div></td><td>${chipPri(p._d.pri)}</td></tr>`).join('') + '</tbody></table></div></div>';
+  if (charts.par) charts.par.destroy();
+  if (typeof Chart === 'undefined' || !L.length) return;
+  charts.par = new Chart($('hv-ch-par'), {data: {labels: L.map(p => p.nmer), datasets: [
+    {type: 'bar', label: 'Und prom/mes', data: L.map(p => p.und), backgroundColor: L.map(p => p._cl === 'A' ? '#12233A' : p._cl === 'B' ? '#1F4E78' : '#B8C4D4'), yAxisID: 'y', order: 2},
+    {type: 'line', label: '% acumulado', data: L.map(p => p._acum), borderColor: '#0F9B8E', pointRadius: 0, borderWidth: 2.5, yAxisID: 'y2', order: 1}]},
+    options: {responsive: true, maintainAspectRatio: false, plugins: {datalabels: {display: false}, legend: {position: 'top'}, tooltip: {callbacks: {title: it => { const p = L[it[0].dataIndex]; return p.nmer + ' · ' + p.pdv; }}}},
+      onClick: (e, el) => { if (el.length) hvVer(L[el[0].index].nmer); },
+      scales: {x: {ticks: {display: false}, grid: {display: false}}, y: {beginAtZero: true, title: {display: true, text: 'Unidades'}}, y2: {position: 'right', min: 0, max: 100, grid: {display: false}, ticks: {callback: v => v + ' %'}}}}});
+}
+
+/* ===================== VISTA 3: HOJA DE VIDA ===================== */
+function step(cls, k, v, d) { return `<div class="hv-step ${cls}"><div class="k">${k}</div><div class="v">${v}</div><div class="d">${d}</div></div>`; }
+function pintarHoja() {
+  const L = orden(filtrados());
+  if (!sel || !PDV.find(p => p.nmer === sel)) sel = L.length ? L[0].nmer : (PDV[0] && PDV[0].nmer);
+  const p = PDV.find(x => x.nmer === sel), d = p._d, P = par();
+  const pos = L.findIndex(x => x.nmer === sel);
+  const nav = `<div class="hv-sel"><input list="hv-dl" id="hv-buscar" placeholder="Escribe nombre del PDV o código NMER y presiona Enter..." value=""><datalist id="hv-dl">${PDV.map(x => `<option value="${x.nmer} · ${esc(x.pdv)}">`).join('')}</datalist>
+    <button onclick="hvMover(-1)">◀ Anterior</button><span style="font-size:12px;color:#7A8699">${pos >= 0 ? (pos + 1) + ' de ' + L.length + ' (orden prioridad)' : 'fuera del filtro'}</span><button onclick="hvMover(1)">Siguiente ▶</button>
+    <button class="hv-btn" onclick="hvExpHoja()">⬇ Hoja de vida a Excel</button><button class="hv-btn sec" onclick="window.print()">🖨 Imprimir</button></div>`;
+  const cumpl = d.vm ? (d.vm[0] ? d.vm[1] / d.vm[0] * 100 : null) : null;
+  const head = `<div class="hv-head"><div><h2>${esc(p.pdv)}</h2><div class="m"><b>${p.nmer}</b> · Código cadena: ${esc(p.cod)} · ${esc(p.cad)} · ${esc(p.fmt)} · ${esc(p.ciu)}<br>Coordinador: <b>${esc(p.coord)}</b> · Mercaderista: <b>${esc(p.merc)}</b><br>Plan: visitar <b>${esc(p.visitar || '—')}</b> · frecuencia sugerida ${p.frec == null ? '—' : p.frec + ' visitas/mes'} · SKU que rotan: ${p.sku == null ? '—' : p.sku}</div></div>
+    <div class="sem"><div>${chipPri(d.pri)} ${chipCl(p._cl)}</div><div class="big">${p._rk ? '#' + p._rk : 's/d'}</div><div class="m">ranking rotación · ${fP(p._part, 2)} part. · ${fP(p._acum, 1)} acum.</div></div></div>`;
+  // ---- secuencia de lectura (logica del cliente)
+  const exU = d.uT ? exh(d.uT) : null, exP = d.pT ? exh(d.pT) : null;
+  const linU = d.uT ? (d.uT.ind['EXHIBICIONES LINEALES'] || 0) : 0;
+  const acc = d.al.filter(a => a.e !== 'I').sort((a, b) => PRI[b.pri] - PRI[a.pri]);
+  const seq = '<div class="hv-seq">'
+    + step(p._cl === 'A' || p._cl === 'B' ? 'r' : 'n', '1 · ¿Es Pareto?', p._cl === '-' ? 'Sin dato' : (p._cl === 'C' ? 'No (C)' : 'Sí · ' + p._cl), p.und ? fN(p.und, 1) + ' und/mes · rank ' + p._rk : 'El plan no trae rotación')
+    + step(!d.ult ? 'r' : d.sinDias > P.sv ? 'o' : 'g', '2 · ¿Última visita?', d.ult ? fD(d.ult.d) : 'Sin visita', d.ult ? 'Hace ' + d.sinDias + ' días · ' + (d.vm ? 'mes: ' + fN(d.vm[1]) + ' de ' + fN(d.vm[0]) + ' (' + fP(cumpl, 0) + ')' : 'sin mandatorias del mes') : 'No hay registros PLF')
+    + step(d.dInv == null ? 'n' : d.dInv > P.di ? 'r' : 'g', '3 · Inventario vs rotación', d.dInv == null ? (p.inv ? fN(d.inv) + ' und' : 'Sin dato') : fN(d.dInv) + ' días', p.inv ? fN(d.inv) + ' und · ' + (d.dInv == null ? 'sin rotación' : d.dInv > P.di ? 'EXCEDIDO (> ' + P.di + ' d)' : 'dentro del rango') : 'La cadena no envió inventario')
+    + step(d.cajas.length ? (d.bodNo ? 'r' : 'o') : (p.inv ? 'g' : 'n'), '4 · ¿Cajas cerradas?', d.cajas.length ? fN(d.cajas.reduce((s, x) => s + x.q, 0) / P.cj) + ' posibles' : (p.inv ? 'No' : 'Sin dato'), (d.cajas.length ? d.cajas.length + ' producto(s) múltiplo de ' + P.cj : 'Sin múltiplos exactos de ' + P.cj) + (d.bod ? ' · bodega ' + fD(d.bod[0]) + ': ' + (d.bod[2] ? 'NO sacó todo' : 'SÍ sacó todo') : ''))
+    + step(d.venc.length ? 'r' : d.prox.length ? 'o' : (d.cf.length ? 'g' : 'n'), '5 · ¿Buenas o malas fechas?', d.venc.length ? fN(d.venc.reduce((s, x) => s + (+x.u || 0), 0)) + ' und vencidas' : d.prox.length ? fN(d.prox.reduce((s, x) => s + (+x.u || 0), 0)) + ' und ≤ ' + P.cf + ' d' : (d.cf.length ? 'Buenas fechas' : 'Sin toma'), d.cf.length ? d.cf.length + ' lote(s) en la última toma' : 'No hay toma de fechas en los últimos 45 días')
+    + step(!d.uT ? 'n' : (linU && !(exP != null && exU < exP)) ? 'g' : 'o', '6 · ¿Está exhibido?', d.uT ? 'Lineal ' + (linU ? '✔' : '✖') + ' · Exh ' + exU : 'Sin fotos', d.uT ? 'Visita ' + fD(d.uT.d) + (exP != null ? ' · antes ' + exP + ' exh.' : '') + ' · ' + d.uT.fotos.length + ' fotos' : 'No hay tareas con evidencia')
+    + step(acc.length ? (d.pri === 'ALTA' ? 'r' : 'o') : 'g', '7 · Acción', acc.length ? acc.length + ' acción(es)' : 'Sin acción', acc.length ? esc(acc[0].acc) : 'PDV sin problemas detectados con la información disponible')
+    + '</div>';
+  // ---- A. comercial
+  const cj = P.cj, agE = {}; if (d.ag) d.ag.det.forEach(x => agE[x[1]] = x[2] || 'NO DISPONIBLE');
+  const tA = p.inv ? `<div class="hv-tw" style="max-height:360px"><table class="hv-t"><thead><tr><th>Producto</th><th>EAN / Cód.</th><th>Marca</th><th class="num">Inventario</th>${p.inv.f === 'CENCOSUD' ? '<th class="num">Venta 4 sem.</th><th class="num">Venta 12 sem.</th>' : ''}${p.inv.f === 'MAKRO' ? '<th class="num">Venta mes en curso</th>' : ''}<th>Caja cerrada</th><th>Góndola última medición</th></tr></thead><tbody>`
+    + d.prods.slice().sort((a, b) => b.q - a.q).map(x => `<tr><td>${esc(x.p)}</td><td>${esc(x.ean)}</td><td><small>${esc(x.m)}</small></td><td class="num"><b>${fN(x.q)}</b></td>${p.inv.f === 'CENCOSUD' ? `<td class="num">${fN(x.v4)}</td><td class="num">${fN(x.v12)}</td>` : ''}${p.inv.f === 'MAKRO' ? `<td class="num">${fN(x.vm)}</td>` : ''}<td>${x.q >= cj && x.q % cj === 0 ? '<span class="hv-chip M">Posible · ' + (x.q / cj) + ' caja(s)</span>' : x.q < 0 ? '<span class="hv-chip gr">Negativo</span>' : ''}</td><td>${agE[x.ean] ? '<span class="hv-chip A">' + esc(agE[x.ean]) + '</span>' : ''}</td></tr>`).join('')
+    + `</tbody></table></div><div class="hv-nota">Fuente: inventario ${esc(p.inv.f)}${p.inv.fecha ? ' al ' + fD(p.inv.fecha) : ''}. ${esc(p.inv.nota || '')} Días de inventario = inventario actual ÷ und promedio mes × 30.</div>`
+    : '<div class="hv-vacio">La cadena no envió inventario de este PDV — información insuficiente.</div>';
+  // ---- B. vencimientos
+  const tB = d.cf.length ? `<div class="hv-tw" style="max-height:300px"><table class="hv-t"><thead><tr><th>Producto</th><th>Lote</th><th class="num">Und</th><th>Vence</th><th class="num">Días rest.</th><th>Estado</th><th>Toma</th></tr></thead><tbody>`
+    + d.cf.map(x => `<tr><td>${esc(x.p)}</td><td>${esc(x.lote)}</td><td class="num">${fN(x.u)}</td><td>${fD(x.vence)}</td><td class="num">${x.rest ?? '—'}</td><td><span class="hv-chip ${x.est === 'Vencido' ? 'A' : x.est === 'Próximo a vencer' ? 'M' : 'ok'}">${x.est}</span></td><td>${fD(x.t)}</td></tr>`).join('') + '</tbody></table></div><div class="hv-nota">Del módulo Control de fechas de vencimiento (encuesta TOMA FECHAS DE VENCIMIENTO). Última toma por producto-lote; días restantes contra el corte ' + fD(CORTE) + '.</div>'
+    : '<div class="hv-vacio">Sin toma de fechas de vencimiento en los últimos 45 días.</div>';
+  // ---- C. ejecucion PLF
+  const meses = Object.keys(p.vis).sort();
+  const tC = `<table class="hv-t"><thead><tr><th>Mes</th><th class="num">Mandatorias</th><th class="num">Realizadas</th><th class="num">Cumplimiento</th></tr></thead><tbody>` + meses.map(m => { const v = p.vis[m]; return `<tr><td>${m}</td><td class="num">${fN(v[0])}</td><td class="num">${fN(v[1])}</td><td class="num">${v[0] ? fP(v[1] / v[0] * 100, 0) : '—'}</td></tr>`; }).join('') + '</tbody></table>'
+    + `<div class="hv-grp">Historial de visitas (tareas, encuestas y mediciones)</div><div class="hv-tw" style="max-height:260px"><table class="hv-t"><thead><tr><th>Fecha</th><th>Registró</th><th class="num">Lineal</th><th class="num">Lugar exh.</th><th class="num">Exh. adicional</th><th class="num">POS</th><th class="num">Fotos</th></tr></thead><tbody>`
+    + p.dias.slice().reverse().map(x => `<tr class="clk" onclick="hvVis('${x.d}')"><td>${fD(x.d)}</td><td><small>${x.f.join(', ')}</small></td><td class="num">${x.ind['EXHIBICIONES LINEALES'] || ''}</td><td class="num">${x.ind['LUGAR DE EXHIBICION'] || ''}</td><td class="num">${(x.ind['EXHIBICIONES GRATIS'] || 0) + (x.ind['EXHIBICIONES NEGOCIADAS'] || 0) || ''}</td><td class="num">${x.ind['PROMOCIONES POS'] || ''}</td><td class="num">${x.fotos.length || ''}</td></tr>`).join('') + '</tbody></table></div>';
+  // ---- D. exhibiciones (fotos por visita)
+  const conF = p.dias.filter(x => x.fotos.length);
+  if (!visSel || !conF.find(x => x.d === visSel)) visSel = conF.length ? conF[conF.length - 1].d : null;
+  const vx = conF.find(x => x.d === visSel), grupos = {'Lineal': [], 'Lugar de exhibición': [], 'Exhibiciones adicionales': [], 'Promociones POS': []};
+  if (vx) vx.fotos.forEach(f => { const g = f[0] === 'EXHIBICIONES LINEALES' ? 'Lineal' : f[0] === 'LUGAR DE EXHIBICION' ? 'Lugar de exhibición' : f[0] === 'PROMOCIONES POS' ? 'Promociones POS' : 'Exhibiciones adicionales'; grupos[g].push(f); });
+  const iV = conF.findIndex(x => x.d === visSel), vAnt = iV > 0 ? conF[iV - 1] : null;
+  const tD = conF.length ? `<div class="hv-vtabs">${conF.slice(-10).reverse().map(x => `<button class="${x.d === visSel ? 'on' : ''}" onclick="hvVis('${x.d}')">${fD(x.d)} · ${x.fotos.length}</button>`).join('')}</div>`
+    + `<div class="hv-nota" style="margin:0 0 6px">Visita ${fD(visSel)}: ${exh(vx)} foto(s) de exhibición${vAnt ? ' · visita anterior (' + fD(vAnt.d) + '): ' + exh(vAnt) + (exh(vx) < exh(vAnt) ? ' <b style="color:#C0392B">▼ bajó</b>' : exh(vx) > exh(vAnt) ? ' <b style="color:#2E7D32">▲ subió</b>' : ' = igual') : ''}. Una foto ausente no se toma como incumplimiento confirmado.</div>`
+    + Object.keys(grupos).filter(g => grupos[g].length).map(g => `<div class="hv-grp">${g} (${grupos[g].length})</div><div class="hv-fotos">` + grupos[g].map(f => `<div class="hv-foto"><img loading="lazy" src="${esc(f[2])}" onclick="hvFoto('${esc(f[2])}','${esc((f[1] || g) + ' · ' + fD(visSel) + ' · ' + f[3]).replace(/'/g, '')}')" onerror="this.style.opacity=.25"><div><b>${esc(f[1] || g)}</b><br>${esc(f[3])}${f[4] ? '<br><small>' + esc(f[4]).slice(0, 70) + '</small>' : ''}<br><a href="${esc(f[2])}" target="_blank">abrir</a></div></div>`).join('') + '</div>').join('')
+    : '<div class="hv-vacio">No hay fotografías registradas para este PDV en el periodo.</div>';
+  // ---- E. indicadores
+  const agHist = p.ago.slice(-8);
+  const tE = `<div class="hv-g2"><div><div class="hv-grp">Agotados por medición</div>${agHist.length ? '<table class="hv-t"><thead><tr><th>Fecha</th><th class="num">Medidos</th><th class="num">Agotados</th><th class="num">%</th></tr></thead><tbody>' + agHist.slice().reverse().map(a => `<tr><td>${fD(a.d)}</td><td class="num">${a.n}</td><td class="num">${a.a}</td><td class="num">${fP(a.a / a.n * 100, 0)}</td></tr>`).join('') + '</tbody></table>' + (d.ag && d.ag.det.length ? '<div class="hv-nota">Última medición no disponibles: ' + d.ag.det.map(x => esc(x[0]) + ' <i>(' + esc(x[2] || 'sin causal') + ')</i>').join(' · ') + '</div>' : '') : '<div class="hv-vacio">Sin mediciones de agotados.</div>'}</div>
+    <div><div class="hv-grp">Facing</div><div class="hv-vacio" style="text-align:left">${estado('I')}<br>La marca no captura facing en Teamcore; el indicador queda pendiente hasta que se configure la tarea.</div>
+    <div class="hv-grp">Bodega (¿sacó todo el inventario de bodega?)</div>${p.bod.length ? '<table class="hv-t"><thead><tr><th>Fecha</th><th class="num">SÍ</th><th class="num">NO</th></tr></thead><tbody>' + p.bod.slice(-6).reverse().map(b => `<tr><td>${fD(b[0])}</td><td class="num">${b[1]}</td><td class="num">${b[2] ? '<b style="color:#C0392B">' + b[2] + '</b>' : 0}</td></tr>`).join('') + '</tbody></table>' : '<div class="hv-vacio">Sin respuestas registradas.</div>'}</div></div>`;
+  // ---- diagnostico del PDV
+  const tF = d.al.length ? `<table class="hv-t"><thead><tr><th>Prioridad</th><th>Estado</th><th>Indicador</th><th>Valor</th><th>Producto</th><th>Evidencia</th><th>Motivo</th><th>Acción recomendada</th></tr></thead><tbody>` + d.al.map(a => `<tr><td>${chipPri(a.pri)}</td><td>${estado(a.e)}</td><td><b>${esc(a.ind)}</b></td><td>${esc(a.val)}</td><td><small>${esc(a.prod || '')}</small></td><td><small>${esc(a.evid)}</small></td><td><small>${esc(a.mot)}</small></td><td>${esc(a.acc)}</td></tr>`).join('') + '</tbody></table>'
+    : '<div class="hv-vacio">Sin alertas con la información disponible.</div>';
+  const chk = acc.map(a => '☐ ' + esc(a.acc) + (a.prod ? ' — <small>' + esc(a.prod) + '</small>' : '')).filter((v, i, x) => x.indexOf(v) === i);
+  $('hv-c-hoja').innerHTML = nav + head + seq
+    + `<div class="hv-panel"><h3>🩺 Diagnóstico del punto de venta</h3>${tF}${chk.length ? '<div class="hv-grp">Preparar la siguiente visita</div><div style="font-size:13px;line-height:1.9">' + chk.join('<br>') + '</div>' : ''}</div>`
+    + `<div class="hv-g3"><div class="hv-panel"><h3>A · Información comercial — inventario por producto</h3>${tA}</div><div class="hv-panel"><h3>B · Fechas de vencimiento</h3>${tB}</div></div>`
+    + `<div class="hv-g3"><div class="hv-panel"><h3>C · Ejecución PLF</h3>${tC}</div><div class="hv-panel"><h3>E · Indicadores</h3>${tE}</div></div>`
+    + `<div class="hv-panel"><h3>D · Exhibiciones — fotografías por visita</h3>${tD}</div>`;
+  const inp = $('hv-buscar');
+  const ir = () => { const v = nrm(inp.value); const m = PDV.find(x => v && (nrm(x.nmer + ' · ' + x.pdv) === v || nrm(x.nmer) === v)) || PDV.find(x => v && nrm(x.nmer + ' ' + x.pdv).indexOf(v) >= 0); if (m) hvVer(m.nmer); };
+  inp.addEventListener('change', ir); inp.addEventListener('keydown', e => { if (e.key === 'Enter') ir(); });
+}
+window.hvMover = function (k) { const L = orden(filtrados()); if (!L.length) return; let i = L.findIndex(x => x.nmer === sel); i = (i + k + L.length) % L.length; hvVer(L[i].nmer); };
+
+/* ===================== VISTA 4: DIAGNOSTICO ===================== */
+const REGLAS = {MULTI: 'Múltiples condiciones', VISITA: 'Sin visita reciente', CUMPL: 'Incumplimiento de visitas', SOBREINV: 'Sobreinventario', CAJA: 'Posibles cajas cerradas', BODEGA: 'Inventario en bodega',
+  VENCE: 'Producto vencido', PROX: 'Próximo a vencer', AGOT: 'Agotados', AGINV: 'Agotado con inventario', EXH: 'Disminución de exhibiciones', LINEAL: 'Sin foto de lineal', SININV: 'Sin inventario', AGVIEJO: 'Agotados desactualizado', SINROT: 'Sin rotación', NEG: 'Inventario negativo'};
+function filasDiag() {
+  const out = []; filtrados().forEach(p => p._d.al.forEach(a => { if (!diagFiltro || a.r === diagFiltro || (diagFiltro === 'CAJA' && a.r === 'BODEGA') || (diagFiltro === 'PROX' && a.r === 'VENCE') || (diagFiltro === 'EXH' && a.r === 'LINEAL') || (diagFiltro === 'AGOT' && a.r === 'AGINV')) out.push([p, a]); }));
+  return out.sort((x, y) => PRI[y[1].pri] - PRI[x[1].pri] || y[0]._d.score - x[0]._d.score);
+}
+function pintarDiag() {
+  const F = filasDiag(), cnt = {}; filtrados().forEach(p => p._d.al.forEach(a => cnt[a.r] = (cnt[a.r] || 0) + 1));
+  const ce = {C: 0, P: 0, I: 0, V: 0}; F.forEach(x => ce[x[1].e]++);
+  $('hv-c-diag').innerHTML = `<div class="hv-kpis">${Object.keys(EST).map(k => `<div class="hv-kpi ${k === 'C' ? 'r' : k === 'P' ? 'o' : k === 'V' ? '' : 'g'}"><div class="n">${fN(ce[k])}</div><div class="t">${EST[k][1]}</div></div>`).join('')}<div class="hv-kpi t2"><div class="n">${fN(new Set(F.map(x => x[0].nmer)).size)}</div><div class="t">PDV con diagnóstico</div></div></div>
+  <div class="hv-panel"><h3>Diagnóstico automático — alertas trazables</h3><div class="sub">Cada alerta muestra la evidencia y la fuente. Las ausencias de foto se reportan como información insuficiente o pendiente de verificación, nunca como incumplimiento confirmado.</div>
+  <div class="hv-vtabs"><button class="${!diagFiltro ? 'on' : ''}" onclick="hvDiag('')">Todas (${F.length && !diagFiltro ? F.length : Object.values(cnt).reduce((s, v) => s + v, 0)})</button>${Object.keys(REGLAS).filter(r => cnt[r]).map(r => `<button class="${diagFiltro === r ? 'on' : ''}" onclick="hvDiag('${r}')">${REGLAS[r]} (${cnt[r]})</button>`).join('')}</div>
+  <div style="text-align:right;margin:4px 0 8px"><button class="hv-btn" onclick="hvExpDiag()">⬇ Descargar diagnóstico a Excel</button></div>
+  <div class="hv-tw"><table class="hv-t"><thead><tr><th>Prioridad</th><th>Estado</th><th>Pareto</th><th>Punto de venta</th><th>Indicador</th><th>Valor observado</th><th>Producto</th><th>Evidencia</th><th>Motivo</th><th>Acción recomendada</th></tr></thead><tbody>`
+  + F.map(([p, a]) => `<tr class="clk" onclick="hvVer('${p.nmer}')"><td>${chipPri(a.pri)}</td><td>${estado(a.e)}</td><td>${chipCl(p._cl)}</td><td><b>${p.nmer}</b><br><small>${esc(p.pdv)}</small></td><td>${esc(a.ind)}</td><td>${esc(a.val)}</td><td><small>${esc(a.prod || '')}</small></td><td><small>${esc(a.evid)}</small></td><td><small>${esc(a.mot)}</small></td><td>${esc(a.acc)}</td></tr>`).join('') + '</tbody></table></div></div>';
+}
+
+/* ===================== VISTA 5: ACCIONES Y SEGUIMIENTO ===================== */
+function comp(p) {
+  const t = p.dias.filter(x => x.f.indexOf('TAREAS') >= 0), u = t[t.length - 1], a = t[t.length - 2];
+  const agU = p.ago[p.ago.length - 1], agA = p.ago[p.ago.length - 2];
+  return {u, a, exU: u ? exh(u) : null, exA: a ? exh(a) : null, linU: u ? (u.ind['EXHIBICIONES LINEALES'] || 0) : null, linA: a ? (a.ind['EXHIBICIONES LINEALES'] || 0) : null,
+    agU: agU ? agU.a / agU.n * 100 : null, agA: agA ? agA.a / agA.n * 100 : null, dAgU: agU && agU.d, dAgA: agA && agA.d};
+}
+const flecha = (a, b, malo) => (a == null || b == null) ? '' : b > a ? (malo ? ' <b style="color:#C0392B">▲</b>' : ' <b style="color:#2E7D32">▲</b>') : b < a ? (malo ? ' <b style="color:#2E7D32">▼</b>' : ' <b style="color:#C0392B">▼</b>') : ' =';
+function pintarAcc() {
+  const L = orden(filtrados()).filter(p => p._d.pri !== 'OK'), coord = {};
+  L.forEach(p => (coord[p.coord] = coord[p.coord] || []).push(p));
+  const tablaC = Object.keys(coord).sort().map(c => `<div class="hv-grp">${esc(c)} — ${coord[c].length} PDV con gestión</div><div class="hv-tw" style="max-height:340px"><table class="hv-t"><thead><tr><th>Prioridad</th><th>Punto de venta</th><th>Mercaderista</th><th>Qué gestionar</th><th>Base de la acción</th><th>Estado de ejecución</th></tr></thead><tbody>`
+    + coord[c].map(p => { const ac = p._d.al.filter(a => a.e !== 'I'); return `<tr class="clk" onclick="hvVer('${p.nmer}')"><td>${chipPri(p._d.pri)}</td><td><b>${p.nmer}</b><br><small>${esc(p.pdv)}</small></td><td><small>${esc(p.merc)}</small></td><td>${ac.map(a => '☐ ' + esc(a.acc)).filter((v, i, x) => x.indexOf(v) === i).join('<br>')}</td><td><small>${ac.map(a => esc(a.ind) + ': ' + esc(a.val)).join('<br>')}</small></td><td><span class="hv-chip gr">Sin registro de ejecución</span></td></tr>`; }).join('') + '</tbody></table></div>').join('');
+  const Lc = orden(filtrados()).filter(p => p.dias.length);
+  $('hv-c-acc').innerHTML = `<div class="hv-panel"><h3>Acciones por coordinador</h3><div class="sub">Solo se marca una acción como ejecutada cuando exista un registro que lo demuestre (hoy no existe tarea de cierre de acciones en Teamcore: todas quedan "Sin registro de ejecución").</div><div style="text-align:right;margin:-4px 0 8px"><button class="hv-btn" onclick="hvExpAcc()">⬇ Descargar plan de acción a Excel</button></div>${tablaC || '<div class="hv-vacio">Sin acciones para el filtro.</div>'}</div>
+  <div class="hv-panel"><h3>Seguimiento — visita anterior vs última visita</h3><div class="sub">Permite ver si la siguiente visita corrigió lo diagnosticado. ▲▼ en verde = mejora, en rojo = deterioro.</div><div class="hv-tw"><table class="hv-t"><thead><tr><th>Punto de venta</th><th>Visita anterior</th><th>Última visita</th><th class="num">Fotos exhibición</th><th class="num">Foto lineal</th><th class="num">% Agotados</th><th>Diagnóstico actual</th></tr></thead><tbody>`
+  + Lc.map(p => { const c = comp(p); return `<tr class="clk" onclick="hvVer('${p.nmer}')"><td><b>${p.nmer}</b> ${chipCl(p._cl)}<br><small>${esc(p.pdv)}</small></td><td>${c.a ? fD(c.a.d) : '—'}</td><td>${c.u ? fD(c.u.d) : '—'}</td><td class="num">${c.exA ?? '—'} → ${c.exU ?? '—'}${flecha(c.exA, c.exU, false)}</td><td class="num">${c.linA ?? '—'} → ${c.linU ?? '—'}</td><td class="num">${c.agA == null ? '—' : fP(c.agA, 0)} → ${c.agU == null ? '—' : fP(c.agU, 0)}${flecha(c.agA, c.agU, true)}</td><td>${chipPri(p._d.pri)}</td></tr>`; }).join('') + '</tbody></table></div></div>';
+}
+
+/* ===================== VISTA 6: LOGICA ===================== */
+function pintarLogica() {
+  const P = par();
+  const pasos = [['1. ¿Es Pareto?', 'Ranking por und promedio mes. A ≤ ' + P.a + ' %, B ≤ ' + P.b + ' % de la venta acumulada.'], ['2. ¿Se hizo la última visita?', 'Fecha de la última tarea/encuesta/medición. Alerta si > ' + P.sv + ' días o sin visita.'],
+    ['3. ¿Cuánto inventario vs rotación?', 'Días inv. = inventario ÷ und prom mes × 30. Excedido si > ' + P.di + ' días.'], ['4. ¿Hay cajas cerradas?', 'Cantidades múltiplo de ' + P.cj + ' (24/48). Se refuerza con la respuesta de bodega = NO.'],
+    ['5. ¿Buenas o malas fechas?', 'Última toma de vencimientos: vencido o ≤ ' + P.cf + ' días. Si además hay exceso → prioridad alta.'], ['6. ¿Está exhibido?', 'Fotos de lineal, lugar de exhibición y adicionales de la última visita vs la anterior. Agotado con inventario en sistema.'],
+    ['7. ¿Qué hago?', 'Descuento POS, sacar de bodega, retirar vencido, visita del coordinador, llamar al mercaderista.']];
+  const M = [['Sin visita reciente', 'Días desde última visita > ' + P.sv, 'Tareas/encuestas PLF', 'Confirmado', 'Media (Alta si Pareto)', 'Programar visita / contactar mercaderista'],
+    ['Incumplimiento de visitas', 'Realizadas < mandatorias del mes anterior', 'Visitas mandatorias', 'Confirmado', 'Baja (Media si Pareto)', 'Revisar frecuencia con coordinador'],
+    ['Sobreinventario', 'Días de inventario > ' + P.di, 'Inventario cadena + plan (sell out)', 'Confirmado', 'Media (Alta si Pareto)', 'Verificar inventario físico, descuento POS'],
+    ['Posibles cajas cerradas', 'Inventario múltiplo exacto de ' + P.cj, 'Inventario cadena + encuesta bodega', 'Posible riesgo / Pendiente verificación', 'Baja → Alta con bodega NO', 'Revisar bodega y sacar a góndola'],
+    ['Producto vencido', 'Fecha vence < corte', 'Toma fechas de vencimiento', 'Confirmado', 'Alta', 'Retirar / gestionar con PDV'],
+    ['Próximo a vencer', 'Días restantes ≤ ' + P.cf, 'Toma fechas de vencimiento', 'Confirmado', 'Baja → Alta con sobreinventario', 'Descuento POS, rotación FIFO'],
+    ['Agotados', '% productos no disponibles > 0', 'Medición de agotados', 'Confirmado', 'Baja (Media si ≥ 30 %)', 'Gestionar surtido'],
+    ['Agotado con inventario', 'Agotado en góndola y la cadena reporta inventario', 'Agotados + inventario', 'Pendiente de verificación', 'Media (Alta si Pareto)', 'Verificar bodega y surtir lineal'],
+    ['Disminución de exhibiciones', 'Fotos exhibición última visita < anterior', 'Registro fotográfico', 'Pendiente de verificación', 'Baja (Media si Pareto)', 'Confirmar con mercaderista'],
+    ['Sin foto de lineal', 'Última visita sin tarea de lineal', 'Registro fotográfico', 'Información insuficiente', 'No suma prioridad', 'Pedir foto en próxima visita'],
+    ['Sin inventario / rotación / facing', 'La fuente no trae el dato', 'Cadena / cliente / Teamcore', 'Información insuficiente', 'No suma prioridad', 'Solicitar información'],
+    ['Múltiples condiciones', '3 o más condiciones de riesgo distintas', 'Todas', 'Confirmado', 'Alta', 'Visita del coordinador']];
+  $('hv-c-logica').innerHTML = `<div class="hv-panel"><h3>Proceso de pensamiento del diagnóstico</h3><div class="sub">Secuencia de lectura del PDV planteada en la reunión: primero la última visita, luego inventario, cajas, fechas y exhibición, para influir en la siguiente visita.</div><div class="hv-flujo">${pasos.map(x => `<div class="fz"><b>${x[0]}</b>${x[1]}</div>`).join('')}</div></div>
+  <div class="hv-panel"><h3>Matriz de reglas e indicadores</h3><table class="hv-t"><thead><tr><th>Regla</th><th>Condición</th><th>Fuente</th><th>Estado</th><th>Prioridad</th><th>Acción</th></tr></thead><tbody>${M.map(r => '<tr>' + r.map(c => '<td>' + esc(c) + '</td>').join('') + '</tr>').join('')}</tbody></table>
+  <div class="hv-nota">Prioridad del PDV = la más alta de sus alertas. Puntaje = suma de alertas (Alta 3, Media 2, Baja 1) × 1,5 si es Pareto A o × 1,2 si es B. Las alertas de información insuficiente no suman.</div></div>
+  <div class="hv-panel"><h3>Fuentes y llaves de integración</h3><table class="hv-t"><thead><tr><th>Fuente</th><th>Granularidad</th><th>Llave</th><th>Uso</th></tr></thead><tbody>
+  <tr><td>Plan de visitas Don Chicharrón</td><td>1 fila por PDV</td><td>NMER ↔ código comercio 1</td><td>Maestro de PDV, rotación ENE-SEP, venta, frecuencia</td></tr>
+  <tr><td>Inventario Éxito</td><td>PDV × producto (${fD(D.meta.f_inv.EXITO)})</td><td>ean_point_sale = código comercio 1</td><td>Inventario, marca propia, cajas</td></tr>
+  <tr><td>Inventario Cencosud</td><td>PDV × producto</td><td>Cód. Tienda = código comercio 1 (o nombre de tienda)</td><td>Inventario, venta 4/12 semanas</td></tr>
+  <tr><td>Inventario Makro</td><td>PDV × producto (corte ${fD(D.meta.f_inv.MAKRO)})</td><td>Nº de Ubicación = código comercio 1</td><td>Inventario, venta del mes</td></tr>
+  <tr><td>Tareas PLF (exhibiciones, lugar, POS)</td><td>Tarea × foto</td><td>NMER + fecha</td><td>Visitas, fotos, exhibiciones</td></tr>
+  <tr><td>Encuestas PLF (lugar, bodega, vencimientos)</td><td>Pregunta × respuesta</td><td>NMER + fecha</td><td>Bodega, fechas de vencimiento</td></tr>
+  <tr><td>Agotados PLF</td><td>PDV × producto × fecha</td><td>NMER + EAN</td><td>Agotados, agotado con inventario</td></tr>
+  <tr><td>Visitas mandatorias</td><td>PDV × mes</td><td>NMER + mes</td><td>Cumplimiento</td></tr></tbody></table>
+  <div class="hv-nota">Todas las fuentes se agregan a nivel PDV antes de unirse: no se duplican inventarios, ventas, visitas ni fotos. Meses PLF cargados: ${D.meta.meses.join(', ')}. Paquete generado: ${esc(D.meta.generado)}.</div></div>`;
+}
+
+/* ===================== EXPORTACIONES ===================== */
+function xls(nombre, hojas) {
+  if (typeof XLSX === 'undefined') { alert('Exportación no disponible'); return; }
+  const wb = XLSX.utils.book_new();
+  hojas.forEach(h => { const ws = XLSX.utils.aoa_to_sheet(h[1]); ws['!cols'] = h[1][0].map(() => ({wch: 22})); XLSX.utils.book_append_sheet(wb, ws, h[0].slice(0, 31)); });
+  XLSX.writeFile(wb, nombre + '_DON_CHICHARRON_' + new Date().toISOString().slice(0, 10) + '.xlsx');
+}
+window.hvExpResumen = () => xls('Hoja_Vida_PDV_Priorizados', [['Priorizados', [['Prioridad', 'Puntaje', 'Pareto', 'Rank', 'NMER', 'PDV', 'Cadena', 'Ciudad', 'Coordinador', 'Mercaderista', 'Und prom mes', 'Inventario', 'Dias inventario', 'Ultima visita', 'Dias sin visita', 'Mandatorias mes', 'Realizadas mes', '% Agotados', 'Vencidos/Proximos', 'Alertas']]
+  .concat(orden(filtrados()).map(p => { const d = p._d; return [d.pri, +d.score.toFixed(1), p._cl, p._rk, p.nmer, p.pdv, p.cad, p.ciu, p.coord, p.merc, p.und, p.inv ? d.inv : '', d.dInv == null ? '' : Math.round(d.dInv), d.ult ? d.ult.d : '', d.sinDias ?? '', d.vm ? d.vm[0] : '', d.vm ? d.vm[1] : '', d.agPct == null ? '' : +d.agPct.toFixed(1), d.venc.length + d.prox.length, d.al.filter(a => a.e !== 'I').map(a => a.ind).join(' | ')]; }))]]);
+window.hvExpPareto = () => xls('Pareto_PDV', [['Pareto', [['Rank', 'Clase', 'NMER', 'PDV', 'Cadena', 'Ciudad', 'Und prom mes', 'Venta prom mes', '% Part', '% Acum']].concat(filtrados().filter(p => p.und > 0).sort((a, b) => b.und - a.und).map(p => [p._rk, p._cl, p.nmer, p.pdv, p.cad, p.ciu, p.und, p.venta, +p._part.toFixed(3), +p._acum.toFixed(2)]))]]);
+window.hvExpDiag = () => xls('Diagnostico_PDV', [['Diagnostico', [['Prioridad', 'Estado', 'Pareto', 'NMER', 'PDV', 'Cadena', 'Coordinador', 'Mercaderista', 'Indicador', 'Valor', 'Producto', 'Evidencia', 'Motivo', 'Accion']].concat(filasDiag().map(([p, a]) => [a.pri, EST[a.e][1], p._cl, p.nmer, p.pdv, p.cad, p.coord, p.merc, a.ind, a.val, a.prod || '', a.evid, a.mot, a.acc]))]]);
+window.hvExpAcc = () => xls('Plan_Accion_PDV', [['Acciones', [['Coordinador', 'Prioridad', 'NMER', 'PDV', 'Mercaderista', 'Accion', 'Base', 'Estado ejecucion']].concat([].concat(...orden(filtrados()).filter(p => p._d.pri !== 'OK').map(p => p._d.al.filter(a => a.e !== 'I').map(a => [p.coord, a.pri, p.nmer, p.pdv, p.merc, a.acc, a.ind + ': ' + a.val, 'Sin registro de ejecucion']))))]]);
+window.hvExpHoja = () => { const p = PDV.find(x => x.nmer === sel), d = p._d; xls('Hoja_Vida_' + p.nmer, [
+  ['Ficha', [['Campo', 'Valor'], ['NMER', p.nmer], ['PDV', p.pdv], ['Cadena', p.cad], ['Ciudad', p.ciu], ['Coordinador', p.coord], ['Mercaderista', p.merc], ['Pareto', p._cl], ['Rank', p._rk], ['Und prom mes', p.und], ['Inventario', d.inv], ['Dias inventario', d.dInv == null ? '' : Math.round(d.dInv)], ['Ultima visita', d.ult ? d.ult.d : ''], ['Prioridad', d.pri]]],
+  ['Inventario', [['Producto', 'EAN', 'Marca', 'Inventario']].concat(d.prods.map(x => [x.p, x.ean, x.m, x.q]))],
+  ['Vencimientos', [['Producto', 'Lote', 'Und', 'Vence', 'Dias rest', 'Estado', 'Toma']].concat(d.cf.map(x => [x.p, x.lote, x.u, x.vence, x.rest, x.est, x.t]))],
+  ['Visitas', [['Fecha', 'Registros', 'Lineal', 'Lugar exh', 'Exh adicional', 'POS', 'Fotos']].concat(p.dias.map(x => [x.d, x.f.join(', '), x.ind['EXHIBICIONES LINEALES'] || 0, x.ind['LUGAR DE EXHIBICION'] || 0, (x.ind['EXHIBICIONES GRATIS'] || 0) + (x.ind['EXHIBICIONES NEGOCIADAS'] || 0), x.ind['PROMOCIONES POS'] || 0, x.fotos.length]))],
+  ['Fotos', [['Fecha', 'Indicador', 'Tipo', 'Mercaderista', 'Link']].concat([].concat(...p.dias.map(x => x.fotos.map(f => [x.d, f[0], f[1], f[3], f[2]]))))],
+  ['Diagnostico', [['Prioridad', 'Estado', 'Indicador', 'Valor', 'Producto', 'Evidencia', 'Motivo', 'Accion']].concat(d.al.map(a => [a.pri, EST[a.e][1], a.ind, a.val, a.prod || '', a.evid, a.mot, a.acc]))]]); };
+
+
+/* ===================== AYUDA PARA EL USUARIO ===================== */
+const LEY = '<div class="hv-ley"><b>Colores:</b> <span class="hv-chip A">Alta</span> actuar ya · <span class="hv-chip M">Media</span> esta semana · <span class="hv-chip B">Baja</span> seguimiento · <span class="hv-chip ok">Sin alertas</span>'
+  + ' &nbsp;|&nbsp; <b>Pareto:</b> <span class="hv-chip pa">A</span> los que más venden · <span class="hv-chip pb">B</span> siguen en importancia · <span class="hv-chip pc">C</span> resto'
+  + ' &nbsp;|&nbsp; <b>Estado:</b> <span class="hv-est c">Confirmado</span> el dato lo demuestra · <span class="hv-est p">Posible riesgo</span> patrón sospechoso · <span class="hv-est v">Pendiente de verificación</span> hay que confirmarlo en el PDV · <span class="hv-est i">Información insuficiente</span> falta el dato</div>';
+const AYUDA = {
+  resumen: ['¿Dónde tengo que actuar primero?', ['Mire los recuadros de arriba: cada uno cuenta cuántos PDV tienen ese problema.', 'Haga clic en un recuadro para ver el detalle de esos PDV en el Diagnóstico.', 'La tabla está ordenada de mayor a menor riesgo: los primeros son los urgentes.'], 'Abra los primeros PDV de la tabla (clic en la fila) y revise su hoja de vida. Use los filtros para ver solo su cadena, ciudad o coordinador.'],
+  pareto: ['¿Cuáles son los PDV que más venden y más me deben preocupar?', ['Las barras son las unidades que vende cada PDV al mes, de mayor a menor.', 'La línea verde es el acumulado: muestra cuántos PDV hacen el 50 % (clase A) y el 80 % (clase A+B) de la venta.', 'Los PDV A y B son el Pareto: si fallan, se pierde la mayor parte de la venta.'], 'Concentre las revisiones semanales en los PDV A y B. Clic en una barra o fila abre la hoja de vida.'],
+  hoja: ['¿Qué está pasando en este punto de venta, en una sola mirada?', ['Busque el PDV por nombre o NMER, o muévase con Anterior / Siguiente (van en orden de prioridad).', 'Lea las 7 tarjetas de izquierda a derecha: es la secuencia de análisis (Pareto → visita → inventario → cajas → fechas → exhibición → acción). Rojo = problema, naranja = alerta, verde = bien, gris = sin dato.', 'Debajo está el diagnóstico con la evidencia y el detalle: inventario por producto, vencimientos, visitas, indicadores y fotos por visita.'], 'Use "Preparar la siguiente visita" como lista de chequeo para el coordinador o el mercaderista. Puede descargar la hoja a Excel o imprimirla.'],
+  diag: ['¿Qué problemas detecta el sistema y con qué evidencia?', ['Cada fila es una alerta de un PDV: dice qué indicador falló, el valor, el producto y la evidencia.', 'Los botones de arriba filtran por tipo de problema (sobreinventario, vencidos, agotados, etc.).', 'Fíjese en el Estado: solo "Confirmado" está demostrado por los datos; los demás hay que validarlos.'], 'Descargue el diagnóstico a Excel para repartirlo, o haga clic en la fila para ver la hoja de vida del PDV.'],
+  acc: ['¿Qué tiene que hacer cada coordinador y se corrigió en la siguiente visita?', ['Arriba: la lista de tareas por coordinador, PDV por PDV, con la razón de cada acción.', 'Abajo: compara la visita anterior con la última (fotos de exhibición, foto de lineal, % de agotados).', 'Flecha verde = mejoró, flecha roja = empeoró.'], 'Envíe el plan de acción (Excel) a cada coordinador y revise en la siguiente visita si las flechas mejoraron.'],
+  logica: ['¿Cómo decide el sistema que un PDV tiene un problema?', ['El flujo muestra el orden en que se analiza cada PDV.', 'La matriz explica cada regla: qué condición la activa, de dónde sale el dato y qué acción sugiere.', 'Los parámetros (días, porcentajes) se pueden cambiar arriba y todo se recalcula.'], 'Use esta vista para explicarle al cliente o al equipo de dónde salen las alertas.'],
+};
+function ayuda(t) {
+  const a = AYUDA[t]; if (!a) return '';
+  let abierto = true; try { abierto = localStorage.getItem('hv-ay-' + t) !== '0'; } catch (e) {}
+  return `<details class="hv-ayuda" ${abierto ? 'open' : ''} ontoggle="try{localStorage.setItem('hv-ay-${t}',this.open?'1':'0')}catch(e){}"><summary>💡 Cómo leer esta vista</summary><div class="hv-ay">
+    <div><h4>Qué responde</h4><p>${a[0]}</p></div><div><h4>Cómo leerla</h4><ol>${a[1].map(x => '<li>' + x + '</li>').join('')}</ol></div><div><h4>Qué hacer</h4><p>${a[2]}</p></div></div>${LEY}</details>`;
+}
+function pintarGuia() {
+  const P = par();
+  $('hv-c-guia').innerHTML = `<div class="hv-panel"><h3>📘 Cómo usar la HOJA VIDA PDV en 4 pasos</h3><div class="sub">Para cualquier usuario: no necesita conocer las bases de datos. <button class="hv-btn" style="margin-left:8px" onclick="hvTour(0)">▶ Ver recorrido guiado</button></div>
+  <div class="hv-gpasos">
+   <div class="hv-gpaso"><div class="num">1</div><b>Ubíquese</b><p>Escoja su cadena, ciudad o coordinador en los filtros. Todo el módulo se ajusta a esa selección.</p></div>
+   <div class="hv-gpaso"><div class="num">2</div><b>Priorice</b><p>En <i>Resumen ejecutivo</i> vea cuántos PDV tienen problemas y cuáles son los primeros de la lista.</p></div>
+   <div class="hv-gpaso"><div class="num">3</div><b>Entienda el PDV</b><p>Abra la <i>Hoja de vida</i> y lea las 7 tarjetas de izquierda a derecha. Revise la evidencia y las fotos.</p></div>
+   <div class="hv-gpaso"><div class="num">4</div><b>Actúe y haga seguimiento</b><p>Descargue el plan de <i>Acciones</i>, compártalo y en la siguiente visita compruebe si mejoró.</p></div>
+  </div></div>
+  <div class="hv-g2"><div class="hv-panel"><h3>Qué significa cada término</h3><div class="hv-glos">
+   <div><b>Pareto A / B / C:</b> PDV ordenados por unidades vendidas al mes. A hacen el primer ${P.a} % de la venta, B hasta el ${P.b} %, C el resto.</div>
+   <div><b>Días de inventario:</b> cuántos días de venta alcanza el inventario actual. Más de ${P.di} días = sobreinventario.</div>
+   <div><b>Posible caja cerrada:</b> el inventario de un producto es múltiplo exacto de ${P.cj} unidades (cajas de 24 o 48). Puede estar en bodega sin abrir.</div>
+   <div><b>Corta fecha:</b> unidades que vencen en ${P.cf} días o menos según la última toma de fechas.</div>
+   <div><b>Agotado con inventario:</b> el mercaderista reportó la góndola vacía, pero la cadena dice que hay unidades: probablemente están en bodega.</div>
+   <div><b>Última visita:</b> la fecha más reciente en que hubo tareas, encuestas o mediciones en el PDV.</div>
+   <div><b>Visitas mandatorias:</b> visitas que deben hacerse en el mes vs las realizadas.</div>
+   <div><b>Puntaje de prioridad:</b> suma de las alertas (Alta 3, Media 2, Baja 1), con más peso si el PDV es Pareto.</div>
+  </div></div>
+  <div class="hv-panel"><h3>Preguntas frecuentes</h3><div class="hv-faq">
+   <details><summary>¿Por qué un PDV dice "Información insuficiente"?</summary><p>Porque falta un dato para evaluarlo: la cadena no envió inventario, el plan no trae la venta del PDV o la marca no mide facing. No es un incumplimiento.</p></details>
+   <details><summary>¿Si no hay foto quiere decir que no se hizo la exhibición?</summary><p>No. La ausencia de foto se marca como "pendiente de verificación": hay que confirmarlo con el mercaderista.</p></details>
+   <details><summary>¿Puedo cambiar los días o porcentajes?</summary><p>Sí, en la franja de Parámetros. Todo se recalcula al instante y solo afecta su pantalla.</p></details>
+   <details><summary>¿Qué es "Incluir marca propia Éxito (CROC)"?</summary><p>Éxito envía también productos Frescampo/Carulla que fabrica CROC. Puede incluirlos o dejarlos por fuera del inventario.</p></details>
+   <details><summary>¿Cada cuánto se actualiza?</summary><p>Las visitas, fotos y encuestas PLF se actualizan con el proceso diario. El inventario, con cada envío de las cadenas (fecha visible en la hoja de vida).</p></details>
+   <details><summary>¿Cómo busco un PDV?</summary><p>En la Hoja de vida escriba el nombre o el NMER y presione Enter. También puede hacer clic en cualquier fila de cualquier tabla.</p></details>
+  </div></div></div>
+  <div class="hv-panel"><h3>Leyenda de colores y estados</h3>${LEY.replace('class="hv-ley"', 'class="hv-ley" style="border:none;padding:0"')}</div>`;
+}
+/* ---- explicaciones al pasar el mouse ---- */
+const TIPS = {
+  'PDV analizados': 'Puntos de venta del plan de visitas de Don Chicharrón que cumplen los filtros.',
+  'PDV Pareto (A+B)': 'PDV que juntos hacen el 80 % de las unidades vendidas al mes.',
+  'PDV con alertas alta/media': 'PDV con al menos una alerta que requiere gestión esta semana.',
+  'Sin visita reciente o sin visita': 'PDV cuya última visita supera los días del parámetro "Sin visita", o sin visitas registradas.',
+  'Con sobreinventario': 'PDV cuyo inventario alcanza para más días de venta que el parámetro.',
+  'Posibles cajas cerradas / bodega': 'Productos con inventario múltiplo de 24/48 o el mercaderista respondió que no sacó todo de bodega.',
+  'Vencidos o próximos a vencer': 'PDV con unidades vencidas o que vencen pronto según la última toma de fechas.',
+  'Posible problema de exhibición': 'Bajaron las fotos de exhibición frente a la visita anterior o no hay foto de lineal.',
+  'Con agotados': 'PDV con productos no disponibles en la última medición (últimos 30 días).',
+  'Múltiples condiciones de riesgo': 'PDV con 3 o más problemas distintos al mismo tiempo: candidatos a visita del coordinador.',
+  'Días inv.': 'Inventario actual ÷ unidades promedio mes × 30.', 'Und prom/mes': 'Unidades promedio mes ENE-SEP 2026 (sell out) del plan de visitas.',
+  'Cajas': 'Número de posibles cajas cerradas.', 'Visitas mes': 'Realizadas / mandatorias del mes en curso.', '% Agot.': 'Porcentaje de productos no disponibles en la última medición.',
+  'Venc./Próx.': 'Lotes vencidos o próximos a vencer.', 'Prioridad': 'Alta: actuar ya · Media: esta semana · Baja: seguimiento.', 'Pareto': 'Clase A, B o C y posición en el ranking de rotación.',
+  'Estado': 'Confirmado por datos · Posible riesgo · Pendiente de verificación · Información insuficiente.', '% Acum.': 'Participación acumulada desde el PDV que más vende.',
+  '1 · ¿Es Pareto?': '¿El PDV está entre los que hacen el 80 % de la venta?', '2 · ¿Última visita?': 'Fecha de la última visita y cumplimiento de visitas del mes.',
+  '3 · Inventario vs rotación': '¿El inventario alcanza para más días de lo normal?', '4 · ¿Cajas cerradas?': 'Productos con inventario en múltiplos exactos de caja.',
+  '5 · ¿Buenas o malas fechas?': 'Resultado de la última toma de fechas de vencimiento.', '6 · ¿Está exhibido?': 'Foto de lineal y número de fotos de exhibición de la última visita.', '7 · Acción': 'Acción principal recomendada.'
+};
+function ponerTips(root) {
+  root.querySelectorAll('.hv-kpi .t, .hv-t th, .hv-step .k').forEach(e => { const k = e.textContent.trim(); if (TIPS[k]) e.setAttribute('data-tip', TIPS[k]); });
+}
+document.addEventListener('mouseover', e => {
+  const el = e.target.closest && e.target.closest('#vista-hojavida [data-tip]'); let t = $('hv-tip');
+  if (!t) { t = document.createElement('div'); t.id = 'hv-tip'; document.body.appendChild(t); }
+  if (!el) { t.style.display = 'none'; return; }
+  t.textContent = el.getAttribute('data-tip'); t.style.display = 'block';
+  const r = el.getBoundingClientRect(); t.style.left = Math.min(window.innerWidth - 340, Math.max(8, r.left)) + 'px'; t.style.top = (r.bottom + 8 + 80 > window.innerHeight ? r.top - t.offsetHeight - 8 : r.bottom + 8) + 'px';
+});
+/* ---- recorrido guiado ---- */
+const TOUR = [
+  ['#nav-hojavida', null, 'Bienvenido a la HOJA VIDA PDV', 'Aquí encuentra la historia completa de cada punto de venta: ventas, inventario, visitas, fotos y diagnóstico. Las demás opciones del menú siguen igual.'],
+  ['#hv-tabs', null, 'Las vistas del módulo', 'Vaya de izquierda a derecha: Resumen (dónde actuar) → Pareto (quién vende más) → Hoja de vida (un PDV) → Diagnóstico → Acciones. "Cómo usar" tiene la guía completa.'],
+  ['#hv-fil', 'resumen', 'Filtros', 'Escoja cadena, ciudad, coordinador, mercaderista, Pareto o prioridad. Todo el módulo se ajusta a su selección.'],
+  ['#hv-par', 'resumen', 'Parámetros', 'Puede cambiar los criterios (días de inventario, días de vencimiento, % Pareto…). El diagnóstico se recalcula al instante.'],
+  ['#hv-c-resumen .hv-kpis', 'resumen', 'Indicadores clave', 'Cada recuadro cuenta cuántos PDV tienen ese problema. Haga clic en uno para ver la lista detallada.'],
+  ['#hv-c-resumen .hv-tw', 'resumen', 'PDV priorizados', 'La lista va de mayor a menor riesgo. Haga clic en cualquier fila para abrir la hoja de vida de ese PDV.'],
+  ['.hv-sel', 'hoja', 'Buscar un PDV', 'Escriba el nombre o el NMER y presione Enter, o use Anterior / Siguiente para recorrer los PDV en orden de prioridad.'],
+  ['.hv-seq', 'hoja', 'La lectura del PDV en 7 pasos', 'De izquierda a derecha: ¿es Pareto?, ¿se visitó?, ¿cuánto inventario tiene?, ¿cajas cerradas?, ¿buenas fechas?, ¿está exhibido? y ¿qué hago? Rojo = problema, verde = bien.'],
+  ['#hv-c-hoja .hv-panel', 'hoja', 'Diagnóstico y lista de chequeo', 'Cada alerta trae la evidencia. Al final está "Preparar la siguiente visita": la lista de tareas para el coordinador o el mercaderista.'],
+  ['#hv-c-diag .hv-vtabs', 'diag', 'Diagnóstico de todos los PDV', 'Filtre por tipo de problema y descargue a Excel para repartirlo al equipo.'],
+  ['#hv-c-acc .hv-panel', 'acc', 'Acciones y seguimiento', 'El plan de acción por coordinador y la comparación entre la visita anterior y la última para comprobar si mejoró.']];
+window.hvTour = function (i) {
+  const box = $('hv-tour'); if (i < 0 || i >= TOUR.length) { box.style.display = 'none'; try { localStorage.setItem('hv-tour', '1'); } catch (e) {} return; }
+  const s = TOUR[i]; if (s[1] && tab !== s[1]) irTab(s[1]);
+  const el = document.querySelector(s[0]); if (!el) { hvTour(i + 1); return; }
+  el.scrollIntoView({block: 'center'});
+  setTimeout(() => {
+    const r = el.getBoundingClientRect(), L = $('hv-tour-luz'), C = $('hv-tour-card');
+    box.style.display = 'block';
+    Object.assign(L.style, {left: (r.left - 6) + 'px', top: (r.top - 6) + 'px', width: (r.width + 12) + 'px', height: Math.min(r.height + 12, window.innerHeight - 20) + 'px'});
+    C.innerHTML = `<h4>${s[2]}</h4>${s[3]}<div class="pie"><span>${i + 1} de ${TOUR.length}</span><div><button class="hv-btn sec" onclick="hvTour(-1)">Cerrar</button> ${i ? `<button class="hv-btn sec" onclick="hvTour(${i - 1})">◀</button>` : ''} <button class="hv-btn" onclick="hvTour(${i + 1})">${i === TOUR.length - 1 ? 'Terminar' : 'Siguiente ▶'}</button></div></div>`;
+    const abajo = r.bottom + 230 < window.innerHeight;
+    C.style.left = Math.min(window.innerWidth - 380, Math.max(12, r.left)) + 'px';
+    C.style.top = (abajo ? Math.min(r.bottom + 14, window.innerHeight - 220) : Math.max(12, r.top - C.offsetHeight - 14)) + 'px';
+  }, 250);
+};
+
+/* ===================== INTEGRACION CON EL MENU ===================== */
+window.hvAbrir = function () {
+  if (!cargar()) { $('hv-c-resumen').innerHTML = '<div class="hv-vacio">No se pudo cargar la información de la hoja de vida.</div>'; return; }
+  evaluar(); pintar();
+  let visto = true; try { visto = localStorage.getItem('hv-tour') === '1'; } catch (e) {}
+  if (!visto && !window.__hvTourIni) { window.__hvTourIni = 1; setTimeout(() => hvTour(0), 600); }
+};
+const original = window.cambiarVista;
+window.cambiarVista = function (v) {
+  const vh = $('vista-hojavida');
+  if (v === 'hojavida') {
+    document.querySelectorAll('.main .vista').forEach(e => { if (e !== vh) e.style.display = 'none'; });
+    document.querySelectorAll('.sidebar nav a[data-vista]').forEach(a => a.classList.toggle('active', a.dataset.vista === 'hojavida'));
+    try { vistaActual = 'hojavida'; } catch (e) {}
+    vh.style.display = ''; document.body.classList.add('hv-on');
+    window.hvAbrir();
+    try { const h = location.hash.replace(/^#/, '').split('&').filter(x => x.indexOf('v=') !== 0); h.push('v=hojavida'); history.replaceState(null, '', '#' + h.join('&')); } catch (e) {}
+    return;
+  }
+  vh.style.display = 'none'; document.body.classList.remove('hv-on');
+  return original.apply(this, arguments);
+};
+// apertura directa por enlace (#...&v=hojavida): el tablero pudo pedir la vista antes de cargar este modulo
+if ((window.HM && HM.vistaInicial === 'hojavida') || /(^|[#&])v=hojavida(&|$)/.test(location.hash)) setTimeout(() => window.cambiarVista('hojavida'), 30);
+})();
+
 </script>
 </body>
 </html>
