@@ -1,6 +1,6 @@
 <!DOCTYPE html><!-- PLF-PORTADA-DDA-V1 -->
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow"><title>Indicadores DDA mercaderismo · Turbana · PLF</title>
+<meta name="robots" content="noindex,nofollow"><script>/*PLF-ANTIFRAME*/if(top!==self){try{top.location.replace(self.location.href)}catch(e){}document.documentElement.style.display="none"}</script><title>Indicadores DDA mercaderismo · Turbana · PLF</title>
 <style>
 :root{--navy:#0B2545;--navy2:#13315C;--tq:#2FB8C4;--tq-d:#1D8F99;--blue:#1F5FBF;--blue-d:#174C9C;--ink:#0B2545;--mut:#55657E;--line:#D3DCE7;--bg:#F2F5F9;--err:#B42318}
 *{box-sizing:border-box}html,body{min-height:100%}
@@ -137,10 +137,10 @@ pv.addEventListener("click",abrir);document.getElementById("cnx").addEventListen
 cn.addEventListener("click",function(e){if(e.target===cn)cerrar()});cv.addEventListener("ended",cerrar);
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&cn.classList.contains("on"))cerrar()})}catch(e){}})();
 (function(){
-var C={"it": 150000, "sl": [{"s": "iKp6BWe3qkO0gmeJw2e1TQ==", "i": "uszuKsp0spRGEwO7", "k": "QlQ0dqSweHGWwwUbxmf9WFIdaxP+svxYJSBSXL2mvM175qt0H55s3iVZRSOzvnKe"}], "d": {}},K="plf_dda_acc",KA="plf_dda_ali",RX=/<script src="datos\/([A-Za-z0-9_\-]+)\.js[^"]*"><\/script>/g;
+var C={"it": 600000, "sl": [{"s": "iKp6BWe3qkO0gmeJw2e1TQ==", "i": "uszuKsp0spRGEwO7", "k": "/9kJuoavzJnNVXxBHcAWv/NMeBnX+4oENjPI2FVbNXvrZUvnog8bSQEMmEtgCPNZ"}], "d": {}},K="plf_dda_acc",KA="plf_dda_ali",RX=/<script src="datos\/([A-Za-z0-9_\-]+)\.js[^"]*"><\/script>/g;
 var u=document.getElementById("u"),p=document.getElementById("p"),f=document.getElementById("f"),bt=document.getElementById("b"),btx=document.getElementById("bt"),m=document.getElementById("m"),mt=document.getElementById("mt"),st=document.getElementById("st"),ey=document.getElementById("ey");
 function b(s){var t=atob(s),a=new Uint8Array(t.length);for(var i=0;i<t.length;i++)a[i]=t.charCodeAt(i);return a}
-function nz(s){return String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toUpperCase().replace(/[^A-Z0-9]/g,"")}
+function bb(x){var s="",a=new Uint8Array(x);for(var i=0;i<a.length;i++)s+=String.fromCharCode(a[i]);return btoa(s)}function nz(s){return String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toUpperCase().replace(/[^A-Z0-9]/g,"")}
 function msg(t){mt.textContent=t||"";m.classList.toggle("show",!!t)}
 function cargando(on,t){bt.disabled=on;bt.classList.toggle("loading",on);btx.textContent=t||"Iniciar sesión";bt.setAttribute("aria-busy",on?"true":"false");if(on&&t)st.textContent=t}
 function marcar(bad){u.setAttribute("aria-invalid",bad?"true":"false");p.setAttribute("aria-invalid",bad?"true":"false")}
@@ -148,9 +148,9 @@ ey.addEventListener("click",function(){var v=p.type==="password";p.type=v?"text"
 [u,p].forEach(function(x){x.addEventListener("input",function(){if(m.classList.contains("show")){msg("");marcar(false)}})});
 async function des(ck,x){var z=await crypto.subtle.decrypt({name:"AES-GCM",iv:x.slice(0,12)},ck,x.slice(12));return await new Response(new Blob([z]).stream().pipeThrough(new DecompressionStream("gzip"))).text()}
 function vig(h){var r=h.match(/id="(?:hm|tph)-meta"[^>]*>([\s\S]*?)<\/script>/);if(r){try{return JSON.parse(r[1]).vigente}catch(e){}}r=h.match(/"vigente"\s*:\s*"(\d{4}-\d{2})"/);return r?r[1]:null}
-async function abrir(us,pw){
+async function abrir(us,pw,rk){
  if(!window.crypto||!crypto.subtle||!window.DecompressionStream){msg("Este navegador no es compatible. Use Chrome, Edge o Safari actualizados.");return false}
- var km=await crypto.subtle.importKey("raw",new TextEncoder().encode(nz(us)+"|"+nz(pw)),"PBKDF2",false,["deriveKey"]),raw=null;
+ var raw=rk?b(rk):null,km=raw?null:await crypto.subtle.importKey("raw",new TextEncoder().encode(nz(us)+"|"+nz(pw)),"PBKDF2",false,["deriveKey"]);
  for(var i=0;i<C.sl.length&&!raw;i++){var s=C.sl[i];try{
   var k=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b(s.s),iterations:C.it,hash:"SHA-256"},km,{name:"AES-GCM",length:256},false,["decrypt"]);
   raw=await crypto.subtle.decrypt({name:"AES-GCM",iv:b(s.i)},k,b(s.k))}catch(e){}}
@@ -169,7 +169,7 @@ async function abrir(us,pw){
    if(t.slice(0,8)==="PLFENC1:")t=await des(ck,b(t.slice(8).trim()));D[x]=t.replace(/<\/(script)/gi,"<\\/$1")}catch(e){}}))}
  window.__PLFD=D;
  html=html.replace(RX,function(a,x){return D[x]!=null?"<script>"+D[x]+"<\/script>":a});
- try{sessionStorage.setItem(K,JSON.stringify([us,pw]))}catch(e){}
+ try{sessionStorage.setItem(K,JSON.stringify(["~k",bb(raw)]))}catch(e){}
  document.open();document.write(html);document.close();return true}
 f.addEventListener("submit",async function(e){e.preventDefault();
  var al=document.querySelectorAll('input[name="ali"]');if(al.length){var sa=document.querySelector('input[name="ali"]:checked');if(!sa){msg("Elige qué quieres analizar: Alianza 1, Alianza 2 o Total PLF.");return}try{sessionStorage.setItem(KA,sa.value)}catch(x){}}
@@ -178,9 +178,9 @@ f.addEventListener("submit",async function(e){e.preventDefault();
  var ok=false;try{ok=await abrir(u.value,p.value)}catch(x){msg("No se pudo abrir el informe. Intenta de nuevo.")}
  if(!ok){cargando(false);if(!mt.textContent){msg("Usuario o contraseña incorrectos. Verifica los datos e intenta de nuevo.")}marcar(true);p.select()}});
 try{var g=JSON.parse(sessionStorage.getItem(K)||"null");
- if(g&&document.querySelector('input[name="ali"]')){var sa=null;try{sa=sessionStorage.getItem(KA)}catch(x){}if(!sa){u.value=g[0];p.value=g[1];g=null}}
+ if(g&&document.querySelector('input[name="ali"]')){var sa=null;try{sa=sessionStorage.getItem(KA)}catch(x){}if(!sa){if(g[0]!=="~k"){u.value=g[0];p.value=g[1]}else{try{sessionStorage.removeItem(K)}catch(x){}}g=null}}
  if(g){cargando(true,"Abriendo informe…");
- abrir(g[0],g[1]).then(function(ok){if(!ok){sessionStorage.removeItem(K);cargando(false)}})}}catch(e){}
+ abrir(g[0],g[1],g[0]==="~k"?g[1]:null).then(function(ok){if(!ok){sessionStorage.removeItem(K);cargando(false)}})}}catch(e){}
 if(!bt.disabled)u.focus();
 })();
 </script></body></html>
